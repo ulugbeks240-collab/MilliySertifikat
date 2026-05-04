@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sertifikat - Ta'lim Platformasi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="script.js"></script>
+    <style>
+        body {
+            background-color: #F8FAFC;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .sidebar-item:hover {
+            background-color: #f1f5f9;
+        }
+
+        .sidebar-active1 {
+            background-color: #2563eb;
+            color: white !important;
+        }
+    </style>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <aside class="w-64 bg-white border-r border-gray-200 flex flex-col">
+            <div class="p-6 flex items-center gap-3">
+                <div class="bg-blue-600 text-white p-2 rounded-lg">
+                    <i class="fas fa-book-open"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-gray-800 leading-none">Sertifikat</h1>
+                    <p class="text-xs text-gray-500">Ta'lim platformasi</p>
+                </div>
+            </div>
+
+            <nav class="flex-1 px-4 space-y-1">
+                <a href="index.html"
+                    class="sidebar-active1 flex items-center gap-3 p-3 rounded-lg shadow-md shadow-blue-200">
+                    <i class="fas fa-home w-5"></i> Bosh sahifa
+                </a>
+                <a href="test.html"
+                    class="sidebar-active2 flex items-center gap-3 p-3 rounded-lg shadow-md shadow-blue-200">
+                    <i class="fas fa-file-alt w-5"></i> Testlar
+                </a>
+                <a href="video.html"
+                    class="sidebar-active3 flex items-center gap-3 p-3 rounded-lg shadow-md shadow-blue-200">
+                    <i class="fas fa-play-circle w-5"></i> Video darslar
+                </a>
+                <a href="mock.html"
+                    class="sidebar-active4 flex items-center gap-3 p-3 rounded-lg shadow-md shadow-blue-200">
+                    <i class="fas fa-edit w-5"></i> Mock imtihon
+                </a>
+                <a href="kalendar.html"
+                    class="sidebar-active flex items-center gap-3 p-3 rounded-lg shadow-md shadow-blue-200">
+                    <i class="fas fa-calendar-alt w-5"></i> Kalendar
+                </a>
+                <a href="statistika.html"
+                    class="sidebar-active5 flex items-center gap-3 p-3 rounded-lg shadow-md shadow-blue-200">
+                    <i class="fas fa-chart-bar w-5"></i> Statistika
+                </a>
+                <a href="reyting.html"
+                    class="sidebar-active6 flex items-center gap-3 p-3 rounded-lg shadow-md shadow-blue-200">
+                    <i class="fas fa-trophy w-5"></i> Reyting
+                </a>
+                <a href="profil.html"
+                    class="sidebar-active7 flex items-center gap-3 p-3 rounded-lg shadow-md shadow-blue-200">
+                    <i class="fas fa-user w-5"></i> Profil
+                </a>
+                <a href="sozlamlar.html"
+                    class="sidebar-active8 flex items-center gap-3 p-3 rounded-lg shadow-md shadow-blue-200">
+                    <i class="fas fa-cog w-5"></i> Sozlamalar
+                </a>
+            </nav>
+
+            <div class="p-4 border-t border-gray-100">
+                <div class="flex items-center justify-between p-3 text-gray-600 cursor-pointer">
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-bell"></i> Bildirishnomalar
+                    </div>
+                    <span class="bg-red-500 text-white text-[10px] px-1.5 py-0.5 rounded-full">3</span>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="user-welcome">
+                <h1><B>Salom, O'quvchi!</B></h1>
+                <p>Bugungi tayyorgarligingizni davom ettiring</p>
+            </header>
+
+            <section class="top-cards">
+                <div class="card subject-card">
+                    <div class="card-head">
+                        <span class="icon blue">📘</span>
+                        <div>
+                            <h4>Ona tili</h4>
+                            <small>15 test • 24 video</small>
+                        </div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 0%;"></div>
+                    </div>
+                    <span class="progress-percent">0%</span>
+                </div>
+
+                <div class="card subject-card">
+                    <div class="card-head">
+                        <span class="icon purple">🧮</span>
+                        <div>
+                            <h4>Matematika</h4>
+                            <small>18 test • 32 video</small>
+                        </div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 0%;"></div>
+                    </div>
+                    <span class="progress-percent">0%</span>
+                </div>
+
+                <div class="card subject-card">
+                    <div class="card-head">
+                        <span class="icon green">🌐</span>
+                        <div>
+                            <h4>Ingliz tili</h4>
+                            <small>12 test • 28 video</small>
+                        </div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 0%;"></div>
+                    </div>
+                    <span class="progress-percent">0%</span>
+                </div>
+            </section>
+
+            <div class="bottom-grid">
+                <section class="card section-list">
+                    <h3>📄 Testlar</h3>
+                    <div class="list-item">
+                        <div class="item-info">
+                            <strong>Ona tili - Asosiy test</strong>
+                            <small>30 savol • 45 daqiqa</small>
+                        </div>
+                        <button class="btn-start"
+                            style="background: #2563eb; color: white; padding: 5px 15px; border-radius: 5px; font-size: 12px;">Boshlash</button>
+                    </div>
+                    <div class="list-item">
+                        <div class="item-info">
+                            <strong>Matematika - Algebra</strong>
+                            <small>25 savol • 40 daqiqa</small>
+                        </div>
+                        <button class="btn-start"
+                            style="background: #2563eb; color: white; padding: 5px 15px; border-radius: 5px; font-size: 12px;">Boshlash</button>
+                    </div>
+                    <div class="list-item">
+                        <div class="item-info">
+                            <strong>Ingliz tili - Grammar</strong>
+                            <small>20 savol • 30 daqiqa</small>
+                        </div>
+                        <button class="btn-start"
+                            style="background: #2563eb; color: white; padding: 5px 15px; border-radius: 5px; font-size: 12px;">Boshlash</button>
+                    </div>
+                </section>
+
+                <section class="card video-section">
+                    <h3>▶️ Video Darslar</h3>
+                    <div class="video-grid">
+                        <div class="video-item">
+                            <div class="video-thumb blue-v">▶️</div>
+                            <strong>Grammatika asoslari</strong>
+                            <small>Ona tili • 15:30</small>
+                        </div>
+                        <div class="video-item">
+                            <div class="video-thumb purple-v">▶️</div>
+                            <strong>Algebra tenglamalar</strong>
+                            <small>Matematika • 22:15</small>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <section class="results-section card">
+                <div class="section-header">
+                    <h3>📈 Natijalaringiz</h3>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-box blue-soft">
+                        <span class="stat-icon">🎯</span>
+                        <div>
+                            <small>Umumiy ball</small>
+                            <h2>0%</h2>
+                        </div>
+                    </div>
+                    <div class="stat-box green-soft">
+                        <span class="stat-icon">✅</span>
+                        <div>
+                            <small>Bajarilgan testlar</small>
+                            <h2>0/20</h2>
+                        </div>
+                    </div>
+                    <div class="stat-box purple-soft">
+                        <span class="stat-icon">🚀</span>
+                        <div>
+                            <small>O'sish</small>
+                            <h2>0%</h2>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subject-progress-list">
+                    <h4>Fan bo'yicha natijalar</h4>
+
+                    <div class="progress-item">
+                        <div class="progress-info">
+                            <span>Ona tili</span>
+                            <button
+                                style="background: #2563eb; color: white; padding: 2px 10px; border-radius: 4px; font-size: 11px;">Boshlash</button>
+                        </div>
+                        <div class="bar-bg">
+                            <div class="bar-fill blue-bar" style="width: 0%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="progress-item">
+                        <div class="progress-info">
+                            <span>Matematika</span>
+                            <button
+                                style="background: #2563eb; color: white; padding: 2px 10px; border-radius: 4px; font-size: 11px;">Boshlash</button>
+                        </div>
+                        <div class="bar-bg">
+                            <div class="bar-fill purple-bar" style="width: 0%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="progress-item">
+                        <div class="progress-info">
+                            <span>Ingliz tili</span>
+                            <button
+                                style="background: #2563eb; color: white; padding: 2px 10px; border-radius: 4px; font-size: 11px;">Boshlash</button>
+                        </div>
+                        <div class="bar-bg">
+                            <div class="bar-fill gray-bar" style="width: 0%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+</body>
+
+</html>
