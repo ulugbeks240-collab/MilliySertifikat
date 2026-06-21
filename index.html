@@ -6,246 +6,288 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sertifikat - Ta'lim Platformasi</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="script.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body {
-            background-color: #F8FAFC;
             font-family: 'Inter', sans-serif;
         }
-
-        .sidebar-item:hover {
-            background-color: #f1f5f9;
-        }
-
-        .sidebar-active1 {
-            background-color: #2563eb;
-            color: white !important;
-        }
     </style>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
-<body>
-    <div class="dashboard-container">
-        <aside class="w-64 bg-white border-r border-gray-200 flex flex-col">
-            <div class="p-6 flex items-center gap-3">
-                <div class="bg-blue-600 text-white p-2 rounded-lg">
+<body class="bg-slate-50 text-slate-800 antialiased">
+
+    <div
+        class="lg:hidden flex items-center justify-between bg-white px-4 py-3 border-b border-gray-200 sticky top-0 z-50">
+        <button class="text-gray-600 focus:outline-none text-xl" id="hamburgerBtn">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="flex items-center gap-2">
+            <div class="bg-blue-600 text-white p-2 rounded-lg text-sm">
+                <i class="fas fa-book-open"></i>
+            </div>
+            <span class="font-bold text-gray-800 text-lg">Sertifikat</span>
+        </div>
+        <div class="w-6"></div>
+    </div>
+
+    <div class="hidden fixed inset-0 bg-slate-900/40 z-40 lg:hidden" id="sidebarOverlay"></div>
+
+    <div class="flex min-h-screen">
+
+        <aside
+            class="fixed inset-y-0 left-0 -translate-x-full lg:translate-x-0 lg:sticky lg:h-screen w-64 bg-white border-r border-gray-200 flex flex-col z-50 transition-transform duration-300 ease-in-out"
+            id="sidebar">
+            <div class="p-6 flex items-center gap-3 border-b border-gray-50">
+                <div class="bg-blue-600 text-white p-2.5 rounded-xl shadow-md shadow-blue-200">
                     <i class="fas fa-book-open"></i>
                 </div>
                 <div>
-                    <h1 class="font-bold text-gray-800 leading-none">Sertifikat</h1>
-                    <p class="text-xs text-gray-500">Ta'lim platformasi</p>
+                    <h1 class="font-bold text-gray-900 leading-tight">Sertifikat</h1>
+                    <p class="text-xs text-slate-500 font-medium">Ta'lim platformasi</p>
                 </div>
             </div>
 
-            <nav class="flex-1 px-4 space-y-1">
+            <nav class="flex-1 px-4 py-4 space-y-1 overflow-y-auto">
                 <a href="index.html"
-                    class="sidebar-active1 flex items-center gap-3 p-3 rounded-lg shadow-md shadow-blue-200">
-                    <i class="fas fa-home w-5"></i> Bosh sahifa
+                    class="flex items-center gap-3 px-4 py-3 rounded-xl bg-blue-600 text-white font-medium shadow-md shadow-blue-200 transition-all">
+                    <i class="fas fa-home w-5 text-center text-lg"></i> Bosh sahifa
                 </a>
                 <a href="test.html"
-                    class="sidebar-active2 flex items-center gap-3 p-3 rounded-lg shadow-md shadow-blue-200">
-                    <i class="fas fa-file-alt w-5"></i> Testlar
+                    class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 hover:bg-slate-50 font-medium transition-all">
+                    <i class="fas fa-file-alt w-5 text-center text-lg text-slate-400"></i> Testlar
                 </a>
                 <a href="video.html"
-                    class="sidebar-active3 flex items-center gap-3 p-3 rounded-lg shadow-md shadow-blue-200">
-                    <i class="fas fa-play-circle w-5"></i> Video darslar
+                    class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 hover:bg-slate-50 font-medium transition-all">
+                    <i class="fas fa-play-circle w-5 text-center text-lg text-slate-400"></i> Video darslar
                 </a>
                 <a href="mock.html"
-                    class="sidebar-active4 flex items-center gap-3 p-3 rounded-lg shadow-md shadow-blue-200">
-                    <i class="fas fa-edit w-5"></i> Mock imtihon
+                    class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 hover:bg-slate-50 font-medium transition-all">
+                    <i class="fas fa-edit w-5 text-center text-lg text-slate-400"></i> Mock imtihon
                 </a>
                 <a href="kalendar.html"
-                    class="sidebar-active flex items-center gap-3 p-3 rounded-lg shadow-md shadow-blue-200">
-                    <i class="fas fa-calendar-alt w-5"></i> Kalendar
+                    class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 hover:bg-slate-50 font-medium transition-all">
+                    <i class="fas fa-calendar-alt w-5 text-center text-lg text-slate-400"></i> Kalendar
                 </a>
                 <a href="statistika.html"
-                    class="sidebar-active5 flex items-center gap-3 p-3 rounded-lg shadow-md shadow-blue-200">
-                    <i class="fas fa-chart-bar w-5"></i> Statistika
+                    class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 hover:bg-slate-50 font-medium transition-all">
+                    <i class="fas fa-chart-bar w-5 text-center text-lg text-slate-400"></i> Statistika
                 </a>
                 <a href="reyting.html"
-                    class="sidebar-active6 flex items-center gap-3 p-3 rounded-lg shadow-md shadow-blue-200">
-                    <i class="fas fa-trophy w-5"></i> Reyting
+                    class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 hover:bg-slate-50 font-medium transition-all">
+                    <i class="fas fa-trophy w-5 text-center text-lg text-slate-400"></i> Reyting
                 </a>
                 <a href="profil.html"
-                    class="sidebar-active7 flex items-center gap-3 p-3 rounded-lg shadow-md shadow-blue-200">
-                    <i class="fas fa-user w-5"></i> Profil
+                    class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 hover:bg-slate-50 font-medium transition-all">
+                    <i class="fas fa-user w-5 text-center text-lg text-slate-400"></i> Profil
                 </a>
                 <a href="sozlamlar.html"
-                    class="sidebar-active8 flex items-center gap-3 p-3 rounded-lg shadow-md shadow-blue-200">
-                    <i class="fas fa-cog w-5"></i> Sozlamalar
+                    class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 hover:bg-slate-50 font-medium transition-all">
+                    <i class="fas fa-cog w-5 text-center text-lg text-slate-400"></i> Sozlamalar
                 </a>
             </nav>
 
             <div class="p-4 border-t border-gray-100">
-                <div class="flex items-center justify-between p-3 text-gray-600 cursor-pointer">
-                    <div class="flex items-center gap-2">
-                        <i class="fas fa-bell"></i> Bildirishnomalar
+                <a href="bildirishnoma.html"
+                    class="flex items-center justify-between p-3 text-slate-600 hover:bg-slate-50 rounded-xl cursor-pointer transition-all">
+                    <div class="flex items-center gap-2 font-medium">
+                        <i class="fas fa-bell text-slate-400"></i> Bildirishnomalar
                     </div>
-                    <span class="bg-red-500 text-white text-[10px] px-1.5 py-0.5 rounded-full">3</span>
-                </div>
+                    <span class="bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">3</span>
+                </a>
             </div>
         </aside>
 
-        <main class="main-content">
-            <header class="user-welcome">
-                <h1><B>Salom, O'quvchi!</B></h1>
-                <p>Bugungi tayyorgarligingizni davom ettiring</p>
+        <main class="flex-1 p-4 lg:p-8 overflow-x-hidden">
+            <header class="mb-8">
+                <h1 class="text-2xl lg:text-3xl font-bold text-slate-900">Salom, O'quvchi!</h1>
+                <p class="text-slate-500 mt-1">Bugungi tayyorgarligingizni davom ettiring</p>
             </header>
 
-            <section class="top-cards">
-                <div class="card subject-card">
-                    <div class="card-head">
-                        <span class="icon blue">📘</span>
+            <section class="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6 mb-8">
+                <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all">
+                    <div class="flex items-center gap-4 mb-4">
+                        <span class="text-3xl bg-blue-50 p-3 rounded-xl">📘</span>
                         <div>
-                            <h4>Ona tili</h4>
-                            <small>15 test • 24 video</small>
+                            <h4 class="font-bold text-slate-800 text-lg">Ona tili</h4>
+                            <p class="text-xs text-slate-400 font-medium mt-0.5">15 test • 24 video</p>
                         </div>
                     </div>
-                    <div class="progress-bar">
-                        <div class="progress" style="width: 0%;"></div>
+                    <div class="w-full bg-slate-100 h-2 rounded-full mb-2">
+                        <div class="bg-blue-600 h-2 rounded-full" style="width: 35%;"></div>
                     </div>
-                    <span class="progress-percent">0%</span>
+                    <div class="flex justify-between items-center text-xs font-semibold text-slate-500">
+                        <span>Progress</span>
+                        <span class="text-blue-600">35%</span>
+                    </div>
                 </div>
 
-                <div class="card subject-card">
-                    <div class="card-head">
-                        <span class="icon purple">🧮</span>
+                <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all">
+                    <div class="flex items-center gap-4 mb-4">
+                        <span class="text-3xl bg-purple-50 p-3 rounded-xl">🧮</span>
                         <div>
-                            <h4>Matematika</h4>
-                            <small>18 test • 32 video</small>
+                            <h4 class="font-bold text-slate-800 text-lg">Matematika</h4>
+                            <p class="text-xs text-slate-400 font-medium mt-0.5">18 test • 32 video</p>
                         </div>
                     </div>
-                    <div class="progress-bar">
-                        <div class="progress" style="width: 0%;"></div>
+                    <div class="w-full bg-slate-100 h-2 rounded-full mb-2">
+                        <div class="bg-purple-600 h-2 rounded-full" style="width: 10%;"></div>
                     </div>
-                    <span class="progress-percent">0%</span>
+                    <div class="flex justify-between items-center text-xs font-semibold text-slate-500">
+                        <span>Progress</span>
+                        <span class="text-purple-600">10%</span>
+                    </div>
                 </div>
 
-                <div class="card subject-card">
-                    <div class="card-head">
-                        <span class="icon green">🌐</span>
+                <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all">
+                    <div class="flex items-center gap-4 mb-4">
+                        <span class="text-3xl bg-emerald-50 p-3 rounded-xl">🌐</span>
                         <div>
-                            <h4>Ingliz tili</h4>
-                            <small>12 test • 28 video</small>
+                            <h4 class="font-bold text-slate-800 text-lg">Ingliz tili</h4>
+                            <p class="text-xs text-slate-400 font-medium mt-0.5">12 test • 28 video</p>
                         </div>
                     </div>
-                    <div class="progress-bar">
-                        <div class="progress" style="width: 0%;"></div>
+                    <div class="w-full bg-slate-100 h-2 rounded-full mb-2">
+                        <div class="bg-emerald-500 h-2 rounded-full" style="width: 60%;"></div>
                     </div>
-                    <span class="progress-percent">0%</span>
+                    <div class="flex justify-between items-center text-xs font-semibold text-slate-500">
+                        <span>Progress</span>
+                        <span class="text-emerald-600">60%</span>
+                    </div>
                 </div>
             </section>
 
-            <div class="bottom-grid">
-                <section class="card section-list">
-                    <h3>📄 Testlar</h3>
-                    <div class="list-item">
-                        <div class="item-info">
-                            <strong>Ona tili - Asosiy test</strong>
-                            <small>30 savol • 45 daqiqa</small>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                <section class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+                    <h3 class="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+                        <span>📄</span> Testlar
+                    </h3>
+                    <div class="space-y-4">
+                        <div
+                            class="flex items-center justify-between p-3 bg-slate-50 rounded-xl hover:bg-slate-100/70 transition-all">
+                            <div>
+                                <strong class="text-sm font-semibold text-slate-800 block">Ona tili - Asosiy
+                                    test</strong>
+                                <small class="text-xs text-slate-400 font-medium">30 savol • 45 daqiqa</small>
+                            </div>
+                            <button
+                                class="bg-blue-600 hover:bg-blue-700 text-white font-medium px-4 py-1.5 rounded-lg text-xs transition-all shadow-sm">Boshlash</button>
                         </div>
-                        <button class="btn-start"
-                            style="background: #2563eb; color: white; padding: 5px 15px; border-radius: 5px; font-size: 12px;">Boshlash</button>
-                    </div>
-                    <div class="list-item">
-                        <div class="item-info">
-                            <strong>Matematika - Algebra</strong>
-                            <small>25 savol • 40 daqiqa</small>
+                        <div
+                            class="flex items-center justify-between p-3 bg-slate-50 rounded-xl hover:bg-slate-100/70 transition-all">
+                            <div>
+                                <strong class="text-sm font-semibold text-slate-800 block">Matematika - Algebra</strong>
+                                <small class="text-xs text-slate-400 font-medium">25 savol • 40 daqiqa</small>
+                            </div>
+                            <button
+                                class="bg-blue-600 hover:bg-blue-700 text-white font-medium px-4 py-1.5 rounded-lg text-xs transition-all shadow-sm">Boshlash</button>
                         </div>
-                        <button class="btn-start"
-                            style="background: #2563eb; color: white; padding: 5px 15px; border-radius: 5px; font-size: 12px;">Boshlash</button>
-                    </div>
-                    <div class="list-item">
-                        <div class="item-info">
-                            <strong>Ingliz tili - Grammar</strong>
-                            <small>20 savol • 30 daqiqa</small>
+                        <div
+                            class="flex items-center justify-between p-3 bg-slate-50 rounded-xl hover:bg-slate-100/70 transition-all">
+                            <div>
+                                <strong class="text-sm font-semibold text-slate-800 block">Ingliz tili -
+                                    Grammar</strong>
+                                <small class="text-xs text-slate-400 font-medium">20 savol • 30 daqiqa</small>
+                            </div>
+                            <button
+                                class="bg-blue-600 hover:bg-blue-700 text-white font-medium px-4 py-1.5 rounded-lg text-xs transition-all shadow-sm">Boshlash</button>
                         </div>
-                        <button class="btn-start"
-                            style="background: #2563eb; color: white; padding: 5px 15px; border-radius: 5px; font-size: 12px;">Boshlash</button>
                     </div>
                 </section>
 
-                <section class="card video-section">
-                    <h3>▶️ Video Darslar</h3>
-                    <div class="video-grid">
-                        <div class="video-item">
-                            <div class="video-thumb blue-v">▶️</div>
-                            <strong>Grammatika asoslari</strong>
-                            <small>Ona tili • 15:30</small>
+                <section class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+                    <h3 class="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+                        <span>▶️</span> Video Darslar
+                    </h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="group cursor-pointer">
+                            <div
+                                class="aspect-video bg-blue-600 text-white rounded-xl flex items-center justify-center text-2xl font-bold shadow-inner relative overflow-hidden group-hover:bg-blue-700 transition-all">
+                                <i class="fas fa-play"></i>
+                            </div>
+                            <strong
+                                class="text-sm font-semibold text-slate-800 block mt-2 group-hover:text-blue-600 transition-all">Grammatika
+                                asoslari</strong>
+                            <small class="text-xs text-slate-400 font-medium">Ona tili • 15:30</small>
                         </div>
-                        <div class="video-item">
-                            <div class="video-thumb purple-v">▶️</div>
-                            <strong>Algebra tenglamalar</strong>
-                            <small>Matematika • 22:15</small>
+                        <div class="group cursor-pointer">
+                            <div
+                                class="aspect-video bg-purple-600 text-white rounded-xl flex items-center justify-center text-2xl font-bold shadow-inner relative overflow-hidden group-hover:bg-purple-700 transition-all">
+                                <i class="fas fa-play"></i>
+                            </div>
+                            <strong
+                                class="text-sm font-semibold text-slate-800 block mt-2 group-hover:text-purple-600 transition-all">Algebra
+                                tenglamalar</strong>
+                            <small class="text-xs text-slate-400 font-medium">Matematika • 22:15</small>
                         </div>
                     </div>
                 </section>
             </div>
 
-            <section class="results-section card">
-                <div class="section-header">
-                    <h3>📈 Natijalaringiz</h3>
+            <section class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+                <h3 class="text-lg font-bold text-slate-900 mb-6 flex items-center gap-2">
+                    <span>📈</span> Natijalaringiz
+                </h3>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+                    <div class="bg-blue-50/60 p-4 rounded-xl flex items-center gap-4">
+                        <span class="text-2xl bg-blue-100 p-2.5 rounded-lg">🎯</span>
+                        <div>
+                            <small class="text-xs font-semibold text-slate-400 block uppercase tracking-wider">Umumiy
+                                ball</small>
+                            <h2 class="text-xl font-bold text-slate-800">35%</h2>
+                        </div>
+                    </div>
+                    <div class="bg-emerald-50/60 p-4 rounded-xl flex items-center gap-4">
+                        <span class="text-2xl bg-emerald-100 p-2.5 rounded-lg">✅</span>
+                        <div>
+                            <small
+                                class="text-xs font-semibold text-slate-400 block uppercase tracking-wider">Bajarilgan</small>
+                            <h2 class="text-xl font-bold text-slate-800">4/20</h2>
+                        </div>
+                    </div>
+                    <div class="bg-purple-50/60 p-4 rounded-xl flex items-center gap-4">
+                        <span class="text-2xl bg-purple-100 p-2.5 rounded-lg">🚀</span>
+                        <div>
+                            <small
+                                class="text-xs font-semibold text-slate-400 block uppercase tracking-wider">O'sish</small>
+                            <h2 class="text-xl font-bold text-slate-800">+12%</h2>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="stats-grid">
-                    <div class="stat-box blue-soft">
-                        <span class="stat-icon">🎯</span>
-                        <div>
-                            <small>Umumiy ball</small>
-                            <h2>0%</h2>
-                        </div>
-                    </div>
-                    <div class="stat-box green-soft">
-                        <span class="stat-icon">✅</span>
-                        <div>
-                            <small>Bajarilgan testlar</small>
-                            <h2>0/20</h2>
-                        </div>
-                    </div>
-                    <div class="stat-box purple-soft">
-                        <span class="stat-icon">🚀</span>
-                        <div>
-                            <small>O'sish</small>
-                            <h2>0%</h2>
-                        </div>
-                    </div>
-                </div>
+                <div class="space-y-4">
+                    <h4 class="text-sm font-bold text-slate-700 uppercase tracking-wider">Fan bo'yicha natijalar</h4>
 
-                <div class="subject-progress-list">
-                    <h4>Fan bo'yicha natijalar</h4>
-
-                    <div class="progress-item">
-                        <div class="progress-info">
-                            <span>Ona tili</span>
-                            <button
-                                style="background: #2563eb; color: white; padding: 2px 10px; border-radius: 4px; font-size: 11px;">Boshlash</button>
+                    <div class="space-y-1">
+                        <div class="flex justify-between items-center text-sm font-medium">
+                            <span class="text-slate-700">Ona tili</span>
+                            <span class="text-blue-600 font-semibold">35%</span>
                         </div>
-                        <div class="bar-bg">
-                            <div class="bar-fill blue-bar" style="width: 0%;"></div>
+                        <div class="w-full bg-slate-100 h-2 rounded-full">
+                            <div class="bg-blue-600 h-2 rounded-full" style="width: 35%;"></div>
                         </div>
                     </div>
 
-                    <div class="progress-item">
-                        <div class="progress-info">
-                            <span>Matematika</span>
-                            <button
-                                style="background: #2563eb; color: white; padding: 2px 10px; border-radius: 4px; font-size: 11px;">Boshlash</button>
+                    <div class="space-y-1">
+                        <div class="flex justify-between items-center text-sm font-medium">
+                            <span class="text-slate-700">Matematika</span>
+                            <span class="text-purple-600 font-semibold">10%</span>
                         </div>
-                        <div class="bar-bg">
-                            <div class="bar-fill purple-bar" style="width: 0%;"></div>
+                        <div class="w-full bg-slate-100 h-2 rounded-full">
+                            <div class="bg-purple-600 h-2 rounded-full" style="width: 10%;"></div>
                         </div>
                     </div>
 
-                    <div class="progress-item">
-                        <div class="progress-info">
-                            <span>Ingliz tili</span>
-                            <button
-                                style="background: #2563eb; color: white; padding: 2px 10px; border-radius: 4px; font-size: 11px;">Boshlash</button>
+                    <div class="space-y-1">
+                        <div class="flex justify-between items-center text-sm font-medium">
+                            <span class="text-slate-700">Ingliz tili</span>
+                            <span class="text-emerald-500 font-semibold">60%</span>
                         </div>
-                        <div class="bar-bg">
-                            <div class="bar-fill gray-bar" style="width: 0%;"></div>
+                        <div class="w-full bg-slate-100 h-2 rounded-full">
+                            <div class="bg-emerald-500 h-2 rounded-full" style="width: 60%;"></div>
                         </div>
                     </div>
                 </div>
@@ -253,6 +295,21 @@
         </main>
     </div>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const btn = document.getElementById('hamburgerBtn');
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+
+            function toggleSidebar() {
+                sidebar.classList.toggle('-translate-x-full');
+                overlay.classList.toggle('hidden');
+            }
+
+            btn.addEventListener('click', toggleSidebar);
+            overlay.addEventListener('click', toggleSidebar);
+        });
+    </script>
 </body>
 
 </html>

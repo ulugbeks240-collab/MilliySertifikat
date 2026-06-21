@@ -3,159 +3,205 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Darslar - Ta'lim Platformasi</title>
+    <title>Sertifikat - Video Darslar</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body { font-family: 'Inter', sans-serif; }
         .video-gradient-blue { background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); }
         .video-gradient-purple { background: linear-gradient(135deg, #9333ea 0%, #7e22ce 100%); }
         .video-gradient-green { background: linear-gradient(135deg, #10b981 0%, #059669 100%); }
         .video-gradient-orange { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); }
-        .sidebar-item:hover { background-color: #f1f5f9; }
-        .sidebar-active3 { background-color: #2563eb; color: white !important; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
-<body class="bg-slate-50 min-h-screen">
+<body class="bg-slate-50 text-slate-800 antialiased flex flex-col lg:flex-row min-h-screen">
 
-    <div class="flex">
-        <aside class="w-64 bg-white border-r border-gray-200 flex flex-col">
-            <div class="p-6 flex items-center gap-3">
-                <div class="bg-blue-600 text-white p-2 rounded-lg">
-                    <i class="fas fa-book-open"></i>
-                </div>
-                <div>
-                    <h1 class="font-bold text-gray-800 leading-none">Sertifikat</h1>
-                    <p class="text-xs text-gray-500">Ta'lim platformasi</p>
-                </div>
+    <div class="lg:hidden flex items-center justify-between bg-white px-4 py-3 border-b border-gray-200 sticky top-0 z-50">
+        <button class="text-gray-600 focus:outline-none text-xl" id="hamburgerBtn">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="flex items-center gap-2">
+            <div class="bg-blue-600 text-white p-2 rounded-lg text-sm">
+                <i class="fas fa-book-open"></i>
             </div>
-    
-            <nav class="flex-1 px-4 space-y-1">
-                <a href="index.html" class="sidebar-active1 flex items-center gap-3 p-3 rounded-lg shadow-md shadow-blue-200">
-                    <i class="fas fa-home w-5"></i> Bosh sahifa
-                </a>
-                <a href="test.html" class="sidebar-active2 flex items-center gap-3 p-3 rounded-lg shadow-md shadow-blue-200">
-                    <i class="fas fa-file-alt w-5"></i> Testlar
-                </a>
-                <a href="video.html" class="sidebar-active3 flex items-center gap-3 p-3 rounded-lg shadow-md shadow-blue-200">
-                    <i class="fas fa-play-circle w-5"></i> Video darslar
-                </a>
-                <a href="mock.html" class="sidebar-active4 flex items-center gap-3 p-3 rounded-lg shadow-md shadow-blue-200">
-                    <i class="fas fa-edit w-5"></i> Mock imtihon
-                </a>
-                <a href="kalendar.html" class="sidebar-active flex items-center gap-3 p-3 rounded-lg shadow-md shadow-blue-200">
-                    <i class="fas fa-calendar-alt w-5"></i> Kalendar
-                </a>
-                <a href="statistika.html" class="sidebar-active5 flex items-center gap-3 p-3 rounded-lg shadow-md shadow-blue-200">
-                    <i class="fas fa-chart-bar w-5"></i> Statistika
-                </a>
-                <a href="reyting.html" class="sidebar-active6 flex items-center gap-3 p-3 rounded-lg shadow-md shadow-blue-200">
-                    <i class="fas fa-trophy w-5"></i> Reyting
-                </a>
-                <a href="profil.html" class="sidebar-active7 flex items-center gap-3 p-3 rounded-lg shadow-md shadow-blue-200">
-                    <i class="fas fa-user w-5"></i> Profil
-                </a>
-                <a href="sozlamlar.html" class="sidebar-active8 flex items-center gap-3 p-3 rounded-lg shadow-md shadow-blue-200">
-                    <i class="fas fa-cog w-5"></i> Sozlamalar
-                </a>
-            </nav>
-    
-            <div class="p-4 border-t border-gray-100">
-                <div class="flex items-center justify-between p-3 text-gray-600 cursor-pointer">
-                    <div class="flex items-center gap-2">
-                        <i class="fas fa-bell"></i> Bildirishnomalar
-                    </div>
-                    <span class="bg-red-500 text-white text-[10px] px-1.5 py-0.5 rounded-full">3</span>
-                </div>
-            </div>
-        </aside>
-
-        <main class="flex-1 p-8 lg:p-12">
-            <header class="mb-10">
-                <h1 class="text-2xl font-bold text-slate-800">Video darslar</h1>
-                <p class="text-slate-500 mt-1">Barcha mavzular bo'yicha video darslar</p>
-            </header>
-
-            <div class="bg-white rounded-3xl border border-slate-100 shadow-sm p-8">
-                <div class="flex items-center gap-3 mb-8 text-blue-600">
-                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-width="2.5" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                    <h2 class="font-bold text-slate-700 text-lg">Video Darslar</h2>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    
-                    <div class="border border-slate-100 rounded-2xl overflow-hidden group cursor-pointer hover:shadow-md transition">
-                        <div class="h-44 video-gradient-blue flex items-center justify-center relative">
-                            <div class="bg-white/90 p-3 rounded-full text-blue-600 shadow-xl group-hover:scale-110 transition">
-                                <svg class="h-8 w-8" fill="currentColor" viewBox="0 0 20 20"><path d="M4.5 2.691l12.5 7.309-12.5 7.309V2.691z"/></svg>
-                            </div>
-                            <span class="absolute top-4 right-4 bg-green-500 text-white text-[10px] px-2 py-1 rounded font-bold uppercase tracking-wide">Ko'rilgan</span>
-                        </div>
-                        <div class="p-5">
-                            <p class="text-xs text-blue-500 font-bold mb-1">Ona tili</p>
-                            <h3 class="font-bold text-slate-800 text-lg">Grammatika asoslari</h3>
-                            <div class="flex items-center gap-1.5 text-slate-400 mt-2">
-                                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                                <span class="text-xs font-medium">15:30</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="border border-slate-100 rounded-2xl overflow-hidden group cursor-pointer hover:shadow-md transition">
-                        <div class="h-44 video-gradient-purple flex items-center justify-center relative">
-                            <div class="bg-white/90 p-3 rounded-full text-purple-600 shadow-xl group-hover:scale-110 transition">
-                                <svg class="h-8 w-8" fill="currentColor" viewBox="0 0 20 20"><path d="M4.5 2.691l12.5 7.309-12.5 7.309V2.691z"/></svg>
-                            </div>
-                            <span class="absolute top-4 right-4 bg-green-500 text-white text-[10px] px-2 py-1 rounded font-bold uppercase tracking-wide">Ko'rilgan</span>
-                        </div>
-                        <div class="p-5">
-                            <p class="text-xs text-purple-500 font-bold mb-1">Matematika</p>
-                            <h3 class="font-bold text-slate-800 text-lg">Algebra tenglamalar</h3>
-                            <div class="flex items-center gap-1.5 text-slate-400 mt-2">
-                                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                                <span class="text-xs font-medium">22:15</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="border border-slate-100 rounded-2xl overflow-hidden group cursor-pointer hover:shadow-md transition">
-                        <div class="h-44 video-gradient-green flex items-center justify-center relative">
-                            <div class="bg-white/90 p-3 rounded-full text-emerald-600 shadow-xl group-hover:scale-110 transition">
-                                <svg class="h-8 w-8" fill="currentColor" viewBox="0 0 20 20"><path d="M4.5 2.691l12.5 7.309-12.5 7.309V2.691z"/></svg>
-                            </div>
-                        </div>
-                        <div class="p-5">
-                            <p class="text-xs text-emerald-500 font-bold mb-1">Ingliz tili</p>
-                            <h3 class="font-bold text-slate-800 text-lg">Present Simple tenses</h3>
-                            <div class="flex items-center gap-1.5 text-slate-400 mt-2">
-                                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                                <span class="text-xs font-medium">18:45</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="border border-slate-100 rounded-2xl overflow-hidden group cursor-pointer hover:shadow-md transition">
-                        <div class="h-44 video-gradient-orange flex items-center justify-center relative">
-                            <div class="bg-white/90 p-3 rounded-full text-orange-600 shadow-xl group-hover:scale-110 transition">
-                                <svg class="h-8 w-8" fill="currentColor" viewBox="0 0 20 20"><path d="M4.5 2.691l12.5 7.309-12.5 7.309V2.691z"/></svg>
-                            </div>
-                        </div>
-                        <div class="p-5">
-                            <p class="text-xs text-orange-500 font-bold mb-1">Matematika</p>
-                            <h3 class="font-bold text-slate-800 text-lg">Geometriya masalalari</h3>
-                            <div class="flex items-center gap-1.5 text-slate-400 mt-2">
-                                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                                <span class="text-xs font-medium">25:00</span>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </main>
+            <span class="font-bold text-gray-800 text-lg">Sertifikat</span>
+        </div>
+        <div class="w-6"></div>
     </div>
 
+    <div class="hidden fixed inset-0 bg-slate-900/40 z-40 lg:hidden" id="sidebarOverlay"></div>
+
+    <aside class="fixed inset-y-0 left-0 -translate-x-full lg:translate-x-0 lg:sticky lg:h-screen w-64 bg-white border-r border-gray-200 flex flex-col z-50 transition-transform duration-300 ease-in-out" id="sidebar">
+        <div class="p-6 flex items-center gap-3 border-b border-gray-50">
+            <div class="bg-blue-600 text-white p-2.5 rounded-xl shadow-md shadow-blue-200">
+                <i class="fas fa-book-open"></i>
+            </div>
+            <div>
+                <h1 class="font-bold text-gray-900 leading-tight">Sertifikat</h1>
+                <p class="text-xs text-slate-500 font-medium">Ta'lim platformasi</p>
+            </div>
+        </div>
+
+        <nav class="flex-1 px-4 py-4 space-y-1 overflow-y-auto">
+            <a href="index.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 hover:bg-slate-50 font-medium transition-all">
+                <i class="fas fa-home w-5 text-center text-lg text-slate-400"></i> Bosh sahifa
+            </a>
+            <a href="test.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 hover:bg-slate-50 font-medium transition-all">
+                <i class="fas fa-file-alt w-5 text-center text-lg text-slate-400"></i> Testlar
+            </a>
+            <a href="video.html" class="flex items-center gap-3 px-4 py-3 rounded-xl bg-blue-600 text-white font-medium shadow-md shadow-blue-200 transition-all">
+                <i class="fas fa-play-circle w-5 text-center text-lg"></i> Video darslar
+            </a>
+            <a href="mock.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 hover:bg-slate-50 font-medium transition-all">
+                <i class="fas fa-edit w-5 text-center text-lg text-slate-400"></i> Mock imtihon
+            </a>
+            <a href="kalendar.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 hover:bg-slate-50 font-medium transition-all">
+                <i class="fas fa-calendar-alt w-5 text-center text-lg text-slate-400"></i> Kalendar
+            </a>
+            <a href="statistika.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 hover:bg-slate-50 font-medium transition-all">
+                <i class="fas fa-chart-bar w-5 text-center text-lg text-slate-400"></i> Statistika
+            </a>
+            <a href="reyting.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 hover:bg-slate-50 font-medium transition-all">
+                <i class="fas fa-trophy w-5 text-center text-lg text-slate-400"></i> Reyting
+            </a>
+            <a href="profil.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 hover:bg-slate-50 font-medium transition-all">
+                <i class="fas fa-user w-5 text-center text-lg text-slate-400"></i> Profil
+            </a>
+            <a href="sozlamlar.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 hover:bg-slate-50 font-medium transition-all">
+                <i class="fas fa-cog w-5 text-center text-lg text-slate-400"></i> Sozlamalar
+            </a>
+        </nav>
+
+        <div class="p-4 border-t border-gray-100">
+                <a href="bildirishnoma.html"
+                    class="flex items-center justify-between p-3 text-slate-600 hover:bg-slate-50 rounded-xl cursor-pointer transition-all">
+                    <div class="flex items-center gap-2 font-medium">
+                        <i class="fas fa-bell text-slate-400"></i> Bildirishnomalar
+                    </div>
+                    <span class="bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">3</span>
+                </a>
+            </div>
+    </aside>
+
+    <main class="flex-1 p-4 lg:p-8 overflow-x-hidden">
+        <div class="max-w-5xl mx-auto">
+            
+            <header class="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                <div>
+                    <h2 class="text-2xl lg:text-3xl font-bold text-slate-900">Video darslar</h2>
+                    <p class="text-slate-500 mt-1">Barcha fanlar va mavzular bo'yicha video darslar to'plami</p>
+                </div>
+                <div class="relative">
+                    <input type="text" placeholder="Darslarni qidirish..." class="w-full sm:w-64 pl-10 pr-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:border-blue-500 text-sm transition-all bg-white">
+                    <i class="fas fa-search absolute left-3.5 top-3 text-slate-400 text-xs"></i>
+                </div>
+            </header>
+
+            <div class="flex gap-2 overflow-x-auto pb-3 mb-6 no-scrollbar">
+                <button class="bg-blue-600 text-white text-sm font-semibold px-4 py-2 rounded-xl whitespace-nowrap shadow-sm">Barcha darslar</button>
+                <button class="bg-white text-slate-600 hover:bg-slate-100 text-sm font-medium px-4 py-2 rounded-xl border border-slate-200/60 whitespace-nowrap transition-all">Matematika</button>
+                <button class="bg-white text-slate-600 hover:bg-slate-100 text-sm font-medium px-4 py-2 rounded-xl border border-slate-200/60 whitespace-nowrap transition-all">Ona tili</button>
+                <button class="bg-white text-slate-600 hover:bg-slate-100 text-sm font-medium px-4 py-2 rounded-xl border border-slate-200/60 whitespace-nowrap transition-all">Ingliz tili</button>
+            </div>
+
+            <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-4 lg:p-6">
+                <div class="flex items-center gap-2 mb-6 text-blue-600">
+                    <span class="text-lg"><i class="fas fa-play-circle"></i></span>
+                    <h3 class="font-bold text-slate-800 text-base">Mavjud darslar</h3>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
+                    
+                    <div class="border border-slate-100 rounded-2xl overflow-hidden group cursor-pointer hover:shadow-md transition duration-300 bg-white">
+                        <div class="h-48 video-gradient-blue flex items-center justify-center relative">
+                            <div class="bg-white/90 p-3.5 rounded-full text-blue-600 shadow-xl group-hover:scale-110 transition duration-300">
+                                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 20 20"><path d="M4.5 2.691l12.5 7.309-12.5 7.309V2.691z"/></svg>
+                            </div>
+                            <span class="absolute top-4 right-4 bg-emerald-500 text-white text-[10px] px-2 py-0.5 rounded font-bold uppercase tracking-wide shadow-sm">Ko'rilgan</span>
+                        </div>
+                        <div class="p-4 lg:p-5">
+                            <span class="text-xs text-blue-600 font-bold uppercase tracking-wider">Ona tili</span>
+                            <h4 class="font-bold text-slate-800 text-base lg:text-lg mt-1 group-hover:text-blue-600 transition">Grammatika asoslari</h4>
+                            <div class="flex items-center gap-1.5 text-slate-400 mt-3">
+                                <i class="far fa-clock text-xs"></i>
+                                <span class="text-xs font-medium">15:30 daqiqa</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border border-slate-100 rounded-2xl overflow-hidden group cursor-pointer hover:shadow-md transition duration-300 bg-white">
+                        <div class="h-48 video-gradient-purple flex items-center justify-center relative">
+                            <div class="bg-white/90 p-3.5 rounded-full text-purple-600 shadow-xl group-hover:scale-110 transition duration-300">
+                                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 20 20"><path d="M4.5 2.691l12.5 7.309-12.5 7.309V2.691z"/></svg>
+                            </div>
+                            <span class="absolute top-4 right-4 bg-emerald-500 text-white text-[10px] px-2 py-0.5 rounded font-bold uppercase tracking-wide shadow-sm">Ko'rilgan</span>
+                        </div>
+                        <div class="p-4 lg:p-5">
+                            <span class="text-xs text-purple-600 font-bold uppercase tracking-wider">Matematika</span>
+                            <h4 class="font-bold text-slate-800 text-base lg:text-lg mt-1 group-hover:text-purple-600 transition">Algebra tenglamalar</h4>
+                            <div class="flex items-center gap-1.5 text-slate-400 mt-3">
+                                <i class="far fa-clock text-xs"></i>
+                                <span class="text-xs font-medium">22:15 daqiqa</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border border-slate-100 rounded-2xl overflow-hidden group cursor-pointer hover:shadow-md transition duration-300 bg-white">
+                        <div class="h-48 video-gradient-green flex items-center justify-center relative">
+                            <div class="bg-white/90 p-3.5 rounded-full text-emerald-600 shadow-xl group-hover:scale-110 transition duration-300">
+                                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 20 20"><path d="M4.5 2.691l12.5 7.309-12.5 7.309V2.691z"/></svg>
+                            </div>
+                        </div>
+                        <div class="p-4 lg:p-5">
+                            <span class="text-xs text-emerald-600 font-bold uppercase tracking-wider">Ingliz tili</span>
+                            <h4 class="font-bold text-slate-800 text-base lg:text-lg mt-1 group-hover:text-emerald-600 transition">Present Simple tenses</h4>
+                            <div class="flex items-center gap-1.5 text-slate-400 mt-3">
+                                <i class="far fa-clock text-xs"></i>
+                                <span class="text-xs font-medium">18:45 daqiqa</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border border-slate-100 rounded-2xl overflow-hidden group cursor-pointer hover:shadow-md transition duration-300 bg-white">
+                        <div class="h-48 video-gradient-orange flex items-center justify-center relative">
+                            <div class="bg-white/90 p-3.5 rounded-full text-orange-600 shadow-xl group-hover:scale-110 transition duration-300">
+                                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 20 20"><path d="M4.5 2.691l12.5 7.309-12.5 7.309V2.691z"/></svg>
+                            </div>
+                        </div>
+                        <div class="p-4 lg:p-5">
+                            <span class="text-xs text-orange-600 font-bold uppercase tracking-wider">Matematika</span>
+                            <h4 class="font-bold text-slate-800 text-base lg:text-lg mt-1 group-hover:text-orange-600 transition">Geometriya masalalari</h4>
+                            <div class="flex items-center gap-1.5 text-slate-400 mt-3">
+                                <i class="far fa-clock text-xs"></i>
+                                <span class="text-xs font-medium">25:00 daqiqa</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const btn = document.getElementById('hamburgerBtn');
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+
+            function toggleSidebar() {
+                sidebar.classList.toggle('-translate-x-full');
+                overlay.classList.toggle('hidden');
+            }
+
+            btn.addEventListener('click', toggleSidebar);
+            overlay.addEventListener('click', toggleSidebar);
+        });
+    </script>
 </body>
 </html>
