@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="uz">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,13 +11,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        .dark-mode-active body { background-color: #0f172a !important; color: #f1f5f9 !important; }
-        body { font-family: 'Inter', sans-serif; }
+        .dark-mode-active body {
+            background-color: #0f172a !important;
+            color: #f1f5f9 !important;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
     </style>
 </head>
+
 <body class="bg-slate-50 text-slate-800 antialiased flex flex-col lg:flex-row min-h-screen">
 
-    <div class="lg:hidden flex items-center justify-between bg-white px-4 py-3 border-b border-gray-200 sticky top-0 z-50">
+    <div
+        class="lg:hidden flex items-center justify-between bg-white px-4 py-3 border-b border-gray-200 sticky top-0 z-50">
         <button class="text-gray-600 focus:outline-none text-xl" id="hamburgerBtn">
             <i class="fas fa-bars"></i>
         </button>
@@ -31,7 +40,9 @@
 
     <div class="hidden fixed inset-0 bg-slate-900/40 z-40 lg:hidden" id="sidebarOverlay"></div>
 
-    <aside class="fixed inset-y-0 left-0 -translate-x-full lg:translate-x-0 lg:sticky lg:h-screen w-64 bg-white border-r border-gray-200 flex flex-col z-50 transition-transform duration-300 ease-in-out" id="sidebar">
+    <aside
+        class="fixed inset-y-0 left-0 -translate-x-full lg:translate-x-0 lg:sticky lg:h-screen w-64 bg-white border-r border-gray-200 flex flex-col z-50 transition-transform duration-300 ease-in-out"
+        id="sidebar">
         <div class="p-6 flex items-center gap-3 border-b border-gray-50">
             <div class="bg-blue-600 text-white p-2.5 rounded-xl shadow-md shadow-blue-200">
                 <i class="fas fa-book-open"></i>
@@ -43,31 +54,40 @@
         </div>
 
         <nav class="flex-1 px-4 py-4 space-y-1 overflow-y-auto">
-            <a href="index.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 hover:bg-slate-50 font-medium transition-all">
+            <a href="index.html"
+                class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 hover:bg-slate-50 font-medium transition-all">
                 <i class="fas fa-home w-5 text-center text-lg text-slate-400"></i> Bosh sahifa
             </a>
-            <a href="test.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 hover:bg-slate-50 font-medium transition-all">
+            <a href="test.html"
+                class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 hover:bg-slate-50 font-medium transition-all">
                 <i class="fas fa-file-alt w-5 text-center text-lg text-slate-400"></i> Testlar
             </a>
-            <a href="video.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 hover:bg-slate-50 font-medium transition-all">
+            <a href="video.html"
+                class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 hover:bg-slate-50 font-medium transition-all">
                 <i class="fas fa-play-circle w-5 text-center text-lg text-slate-400"></i> Video darslar
             </a>
-            <a href="mock.html" class="flex items-center gap-3 px-4 py-3 rounded-xl bg-blue-600 text-white font-medium shadow-md shadow-blue-200 transition-all">
+            <a href="mock.html"
+                class="flex items-center gap-3 px-4 py-3 rounded-xl bg-blue-600 text-white font-medium shadow-md shadow-blue-200 transition-all">
                 <i class="fas fa-edit w-5 text-center text-lg"></i> Mock imtihon
             </a>
-            <a href="kalendar.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 hover:bg-slate-50 font-medium transition-all">
+            <a href="kalendar.html"
+                class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 hover:bg-slate-50 font-medium transition-all">
                 <i class="fas fa-calendar-alt w-5 text-center text-lg text-slate-400"></i> Kalendar
             </a>
-            <a href="statistika.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 hover:bg-slate-50 font-medium transition-all">
+            <a href="statistika.html"
+                class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 hover:bg-slate-50 font-medium transition-all">
                 <i class="fas fa-chart-bar w-5 text-center text-lg text-slate-400"></i> Statistika
             </a>
-            <a href="reyting.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 hover:bg-slate-50 font-medium transition-all">
+            <a href="reyting.html"
+                class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 hover:bg-slate-50 font-medium transition-all">
                 <i class="fas fa-trophy w-5 text-center text-lg text-slate-400"></i> Reyting
             </a>
-            <a href="profil.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 hover:bg-slate-50 font-medium transition-all">
+            <a href="profil.html"
+                class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 hover:bg-slate-50 font-medium transition-all">
                 <i class="fas fa-user w-5 text-center text-lg text-slate-400"></i> Profil
             </a>
-            <a href="sozlamlar.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 hover:bg-slate-50 font-medium transition-all">
+            <a href="sozlamlar.html"
+                class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 hover:bg-slate-50 font-medium transition-all">
                 <i class="fas fa-cog w-5 text-center text-lg text-slate-400"></i> Sozlamalar
             </a>
         </nav>
@@ -75,75 +95,93 @@
 
     <main class="flex-1 p-4 lg:p-8 overflow-x-hidden">
         <div class="max-w-4xl mx-auto" id="mainContent">
-            
+
             <header class="mb-8">
                 <h2 class="text-2xl lg:text-3xl font-bold text-slate-900">Mock Imtihonlar</h2>
                 <p class="text-slate-500 mt-1">Har bir fan bo'yicha maxsus 10 talik testlar jamlanmasi</p>
             </header>
 
             <div class="space-y-4">
-                <div class="bg-white p-5 lg:p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <div
+                    class="bg-white p-5 lg:p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                     <div>
                         <h3 class="text-lg font-bold text-slate-800 mb-2">Matematika Mock Imtihon</h3>
                         <div class="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-slate-500">
-                            <span class="flex items-center gap-2 text-emerald-600 font-medium"><i class="fas fa-calculator"></i> Matematika</span>
+                            <span class="flex items-center gap-2 text-emerald-600 font-medium"><i
+                                    class="fas fa-calculator"></i> Matematika</span>
                             <span class="flex items-center gap-2"><i class="far fa-list-alt"></i> 10 savol</span>
                             <span class="flex items-center gap-2"><i class="far fa-clock"></i> 20 daqiqa</span>
                         </div>
                     </div>
                     <div class="flex items-center gap-3">
-                        <button id="btn_start_matematika" onclick="startExam('matematika', 'Matematika Mock Imtihon', 20)" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-xl font-medium transition shadow-sm text-sm">Boshlash</button>
-                        <button onclick="showResultsMock('matematika')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-5 py-2.5 rounded-xl font-medium transition text-sm">Natijalar</button>
+                        <button id="btn_start_matematika"
+                            onclick="startExam('matematika', 'Matematika Mock Imtihon', 20)"
+                            class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-xl font-medium transition shadow-sm text-sm">Boshlash</button>
+                        <button onclick="showResultsMock('matematika')"
+                            class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-5 py-2.5 rounded-xl font-medium transition text-sm">Natijalar</button>
                     </div>
                 </div>
 
-                <div class="bg-white p-5 lg:p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <div
+                    class="bg-white p-5 lg:p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                     <div>
                         <h3 class="text-lg font-bold text-slate-800 mb-2">Ona tili va Adabiyot Mock</h3>
                         <div class="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-slate-500">
-                            <span class="flex items-center gap-2 text-blue-600 font-medium"><i class="fas fa-language"></i> Ona tili</span>
+                            <span class="flex items-center gap-2 text-blue-600 font-medium"><i
+                                    class="fas fa-language"></i> Ona tili</span>
                             <span class="flex items-center gap-2"><i class="far fa-list-alt"></i> 10 savol</span>
                             <span class="flex items-center gap-2"><i class="far fa-clock"></i> 15 daqiqa</span>
                         </div>
                     </div>
                     <div class="flex items-center gap-3">
-                        <button id="btn_start_onatili" onclick="startExam('onatili', 'Ona tili va Adabiyot Mock', 15)" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-xl font-medium transition shadow-sm text-sm">Boshlash</button>
-                        <button onclick="showResultsMock('onatili')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-5 py-2.5 rounded-xl font-medium transition text-sm">Natijalar</button>
+                        <button id="btn_start_onatili" onclick="startExam('onatili', 'Ona tili va Adabiyot Mock', 15)"
+                            class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-xl font-medium transition shadow-sm text-sm">Boshlash</button>
+                        <button onclick="showResultsMock('onatili')"
+                            class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-5 py-2.5 rounded-xl font-medium transition text-sm">Natijalar</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="max-w-3xl mx-auto hidden bg-white p-6 rounded-2xl border border-slate-200 shadow-sm" id="examSection">
+        <div class="max-w-3xl mx-auto hidden bg-white p-6 rounded-2xl border border-slate-200 shadow-sm"
+            id="examSection">
             <div class="flex justify-between items-center border-b border-slate-100 pb-4 mb-6">
                 <div>
                     <h3 class="text-xl font-bold text-slate-900" id="examTitleDisplay">Imtihon</h3>
                     <p class="text-xs text-slate-500 mt-0.5">Barcha 10 ta savolga javob bering</p>
                 </div>
-                <div class="bg-amber-50 border border-amber-200 px-4 py-2 rounded-xl text-amber-700 font-bold flex items-center gap-2 text-sm">
+                <div
+                    class="bg-amber-50 border border-amber-200 px-4 py-2 rounded-xl text-amber-700 font-bold flex items-center gap-2 text-sm">
                     <i class="far fa-clock text-base"></i> <span id="timerDisplay">00:00</span>
                 </div>
             </div>
             <div id="questionsContainer" class="space-y-6"></div>
             <div class="mt-8 pt-4 border-t border-slate-100 flex justify-end">
-                <button onclick="finishExam()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-medium px-6 py-3 rounded-xl transition shadow-md shadow-emerald-100 text-sm">
+                <button onclick="finishExam()"
+                    class="bg-emerald-600 hover:bg-emerald-700 text-white font-medium px-6 py-3 rounded-xl transition shadow-md shadow-emerald-100 text-sm">
                     Imtihonni yakunlash
                 </button>
             </div>
         </div>
 
-        <div class="max-w-md mx-auto hidden bg-white p-6 rounded-2xl border border-slate-200 shadow-lg text-center" id="resultSection">
-            <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-2xl mx-auto mb-4">
+        <div class="max-w-md mx-auto hidden bg-white p-6 rounded-2xl border border-slate-200 shadow-lg text-center"
+            id="resultSection">
+            <div
+                class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-2xl mx-auto mb-4">
                 <i class="fas fa-trophy"></i>
             </div>
             <h3 class="text-xl font-bold text-slate-900 mb-1">Imtihon Yakunlandi!</h3>
             <p class="text-sm text-slate-500 mb-6" id="resultExamName">Mock Imtihon</p>
             <div class="bg-slate-50 p-4 rounded-xl space-y-3 mb-6 font-medium text-sm text-slate-600">
-                <div class="flex justify-between"><span>Umumiy savollar:</span> <span class="font-bold text-slate-900" id="resTotal">10 ta</span></div>
-                <div class="flex justify-between"><span>To'g'ri javoblar:</span> <span class="font-bold text-emerald-600" id="resCorrect">0 ta</span></div>
-                <div class="flex justify-between"><span>Foiz ko'rsatkichi:</span> <span class="font-bold text-blue-600" id="resPercent">0%</span></div>
+                <div class="flex justify-between"><span>Umumiy savollar:</span> <span class="font-bold text-slate-900"
+                        id="resTotal">10 ta</span></div>
+                <div class="flex justify-between"><span>To'g'ri javoblar:</span> <span
+                        class="font-bold text-emerald-600" id="resCorrect">0 ta</span></div>
+                <div class="flex justify-between"><span>Foiz ko'rsatkichi:</span> <span class="font-bold text-blue-600"
+                        id="resPercent">0%</span></div>
             </div>
-            <button onclick="backToList()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 rounded-xl transition text-sm">
+            <button onclick="backToList()"
+                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 rounded-xl transition text-sm">
                 Ro'yxatga qaytish
             </button>
         </div>
@@ -184,14 +222,14 @@
         let currentExamId = '';
         let activeQuestions = [];
 
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Sahifa yuklanganda eski natijalar tekshirilib, tugmalar matni yangilanadi
             updateButtonLabels();
-            
+
             const btn = document.getElementById('hamburgerBtn');
             const sidebar = document.getElementById('sidebar');
             const overlay = document.getElementById('sidebarOverlay');
-            if(btn && sidebar && overlay) {
+            if (btn && sidebar && overlay) {
                 btn.addEventListener('click', () => { sidebar.classList.toggle('-translate-x-full'); overlay.classList.toggle('hidden'); });
                 overlay.addEventListener('click', () => { sidebar.classList.toggle('-translate-x-full'); overlay.classList.toggle('hidden'); });
             }
@@ -199,13 +237,13 @@
 
         // Tugmalardagi "Boshlash" yoki "Qayta topshirish" yozuvlarini yangilovchi funksiya
         function updateButtonLabels() {
-            if(localStorage.getItem('matematika')) {
+            if (localStorage.getItem('matematika')) {
                 const btnMat = document.getElementById('btn_start_matematika');
-                if(btnMat) btnMat.textContent = "Qayta topshirish";
+                if (btnMat) btnMat.textContent = "Qayta topshirish";
             }
-            if(localStorage.getItem('onatili')) {
+            if (localStorage.getItem('onatili')) {
                 const btnOna = document.getElementById('btn_start_onatili');
-                if(btnOna) btnOna.textContent = "Qayta topshirish";
+                if (btnOna) btnOna.textContent = "Qayta topshirish";
             }
         }
 
@@ -224,7 +262,7 @@
 
             const container = document.getElementById('questionsContainer');
             container.innerHTML = "";
-            
+
             activeQuestions.forEach((item, qIndex) => {
                 let optionsHTML = "";
                 item.a.forEach((ans, aIndex) => {
@@ -263,14 +301,14 @@
         function updateTimerDisplay() {
             const minutes = Math.floor(timeLeft / 60);
             const seconds = timeLeft % 60;
-            document.getElementById('timerDisplay').textContent = 
+            document.getElementById('timerDisplay').textContent =
                 `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
         }
 
         // Imtihonni tugatish va xotiraga yozish
         function finishExam() {
             clearInterval(timerInterval);
-            
+
             let correctCount = 0;
             activeQuestions.forEach((item, index) => {
                 if (selectedAnswers[index] !== undefined && parseInt(selectedAnswers[index]) === item.c) {
@@ -322,15 +360,17 @@
                 alert("Siz hali bu imtihonni topshirmadingiz. Natijani ko'rish uchun avval 'Boshlash' tugmasini bosing.");
             }
         }
-        document.addEventListener('DOMContentLoaded', function() {
-    // Foydalanuvchi tizimga kirganmi yoki yo'qmi tekshiramiz
-    const isLoggedIn = localStorage.getItem('isLoggedIn');
+        document.addEventListener('DOMContentLoaded', function () {
+            // Foydalanuvchi tizimga kirganmi yoki yo'qmi tekshiramiz
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
 
-    if (isLoggedIn !== 'true') {
-        // Agar kirmagan bo'lsa, uni to'g'ridan-to'g'ri login sahifasiga otib yuboramiz
-        window.location.href = 'login.html'; 
-    }
-});
+            if (isLoggedIn !== 'true') {
+                // Agar kirmagan bo'lsa, uni to'g'ridan-to'g'ri login sahifasiga otib yuboramiz
+                window.location.href = 'login.html';
+            }
+
+        });
     </script>
 </body>
+
 </html>

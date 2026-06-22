@@ -178,7 +178,9 @@
                 document.documentElement.classList.add('dark-mode-active');
             }
         })();
-
+        if (localStorage.getItem('isLoggedIn') !== 'true') {
+        window.location.href = 'login.html';
+    }
     </script>
 </body>
 

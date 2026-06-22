@@ -528,6 +528,9 @@
                 showToast(`Til o'zgartirildi: ${this.value.toUpperCase()}`);
             });
         });
+        if (localStorage.getItem('isLoggedIn') !== 'true') {
+        window.location.href = 'login.html';
+    }
     </script>
 </body>
 
