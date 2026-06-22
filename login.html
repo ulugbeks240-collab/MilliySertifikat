@@ -34,12 +34,12 @@
 
         <form id="loginForm" class="space-y-4">
             <div>
-                <label class="block text-sm font-semibold text-slate-700 mb-1">Login</label>
+                <label class="block text-sm font-semibold text-slate-700 mb-1">Login (Email)</label>
                 <div class="relative">
                     <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-400">
                         <i class="fas fa-at"></i>
                     </span>
-                    <input type="text" id="loginInput" required placeholder="Loginingizni yozing"
+                    <input type="text" id="loginInput" required placeholder="example@test.com"
                         class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-blue-500 text-sm bg-slate-50/50">
                 </div>
             </div>
@@ -73,44 +73,71 @@
         </div>
     </div>
 
-    <script>
-        document.getElementById('loginForm').addEventListener('submit', function (e) {
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+        // Siz yaratgan Firebase Loyihasining shaxsiy sozlamalari
+        const firebaseConfig = {
+            apiKey: "AIzaSyBFP_eL50eMwCZ84IL9IuMJ3Slj_atkuBc",
+            authDomain: "milliy-sertifikat-bbaf2.firebaseapp.com",
+            projectId: "milliy-sertifikat-bbaf2",
+            storageBucket: "milliy-sertifikat-bbaf2.firebasestorage.app",
+            messagingSenderId: "426979442492",
+            appId: "1:426979442492:web:29c01be433376c4bd12839",
+            measurementId: "G-MZ847LGW6C"
+        };
+
+        // Firebase-ni ishga tushiramiz
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        const errorMsg = document.getElementById('errorMsg');
+        const errorText = document.getElementById('errorText');
+
+        // Agar foydalanuvchi allaqachon tizimga kirgan bo'lsa, avtomatik sozlamalar sahifasiga o'tkazadi
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                localStorage.setItem('isLoggedIn', 'true');
+                window.location.href = 'sozlamlar.html';
+            }
+        });
+
+        // Form yuborilganda Firebase orqali tekshirish
+        document.getElementById('loginForm').addEventListener('submit', async function (e) {
             e.preventDefault();
 
             const inputUsername = document.getElementById('loginInput').value.trim().toLowerCase();
             const inputPassword = document.getElementById('passwordInput').value.trim();
-            const errorMsg = document.getElementById('errorMsg');
-            const errorText = document.getElementById('errorText');
 
-            // 1. ADMIN KIRISH TEKSHIRUVI
+            // 1. ADMIN KIRISH TEKSHIRUVI (Static qoldi)
             if (inputUsername === "admin23" && inputPassword === "admin23") {
+                localStorage.setItem('isLoggedIn', 'true');
                 window.location.href = 'admin.html';
                 return;
             }
 
-            // 2. FOYDALANUVCHILAR RO'YXATINI OLISH
-            let usersList = JSON.parse(localStorage.getItem('usersList')) || [];
+            // 2. FOYDALANUVCHINI FIREBASE GLOBAL SERVERIDAN TEKSHIRISH
+            try {
+                // Firebase orqali kirish
+                const userCredential = await signInWithEmailAndPassword(auth, inputUsername, inputPassword);
+                const user = userCredential.user;
 
-            // 3. RO'YXATDAN SHU FOYDALANUVCHINI QIDIRISH
-            const foundUser = usersList.find(user => user.username === inputUsername && user.password === inputPassword);
-
-            if (foundUser) {
-                // Tizimga muvaffaqiyatli kirdi: joriy foydalanuvchi ma'lumotlarini saqlaymiz
+                // Eski local tizimingiz ham ishlashi uchun ma'lumotlarni saqlaymiz
                 localStorage.setItem('isLoggedIn', 'true');
-                localStorage.setItem('userName', foundUser.name);
-                localStorage.setItem('savedUsername', foundUser.username);
-                localStorage.setItem('savedPassword', foundUser.password);
-                localStorage.setItem('isPremium', foundUser.status); // Premium yoki Oddiy
+                localStorage.setItem('userName', user.email.split('@')[0]); // Vaqtincha email bosh qismi ism qilib olindi
+                localStorage.setItem('savedUsername', user.email);
 
                 errorMsg.classList.add('hidden');
-                window.location.href = 'sozlamlar.html'; // yoki sertifikat sahifasi
-            } else {
-                // Agar xato bo'lsa
-                errorText.innerText = "Login yoki parol noto'g'ri, yoki bunday foydalanuvchi mavjud emas!";
+                window.location.href = 'sozlamlar.html';
+            } catch (error) {
+                console.error("Firebase Auth Error:", error);
+                
+                // Xatolik xabarini chiqarish
+                errorText.innerText = "Login (Email) yoki parol noto'g'ri, yoxud bunday foydalanuvchi mavjud emas!";
                 errorMsg.classList.remove('hidden');
             }
         });
-       ndow.location.href = 'login.html';
     </script>
 </body>
 
