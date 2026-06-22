@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sertifikat - Admin Panel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <style>body { font-family: 'Inter', sans-serif; }</style>
+</head>
+<body class="bg-slate-100 min-h-screen">
+
+    <div id="adminLoginCard" class="flex items-center justify-center min-h-screen p-4">
+        <div class="bg-white p-8 rounded-2xl shadow-xl border border-slate-200 max-w-md w-full">
+            <div class="flex flex-col items-center mb-6">
+                <div class="bg-red-600 text-white p-3 rounded-2xl shadow-lg mb-3">
+                    <i class="fas fa-user-shield text-2xl"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-900">Admin Panelga kirish</h2>
+                <p class="text-slate-400 text-sm mt-1">Faqat tizim boshqaruvchisi uchun</p>
+            </div>
+
+            <div id="loginError" class="hidden bg-red-50 border border-red-200 text-red-600 text-sm p-3 rounded-xl mb-4 flex items-center gap-2">
+                <i class="fas fa-exclamation-circle"></i>
+                <span>Login yoki parol noto'g'ri!</span>
+            </div>
+
+            <form id="adminLoginForm" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-1">Admin Login</label>
+                    <input type="text" id="admLogin" required placeholder="admin23" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-red-500 text-sm bg-slate-50">
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-1">Admin Parol</label>
+                    <div class="relative">
+                        <input type="password" id="admPass" required placeholder="••••••••" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-red-500 text-sm bg-slate-50 pr-10">
+                        <button type="button" onclick="togglePass()" class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600">
+                            <i class="far fa-eye" id="eyeIcon"></i>
+                        </button>
+                    </div>
+                </div>
+                <button type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white font-semibold text-sm py-3 rounded-xl shadow-md active:scale-95">
+                    Boshqaruvga kirish
+                </button>
+            </form>
+
+            <div class="mt-6 text-center text-sm text-slate-500 border-t border-slate-100 pt-4">
+                Admin emassizmi? 
+                <a href="login.html" class="text-blue-600 hover:underline font-semibold ml-1">Foydalanuvchi sifatida kirish</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="adminPanelContent" class="hidden">
+        <header class="bg-slate-900 text-white px-6 py-4 flex justify-between items-center shadow-md">
+            <div class="flex items-center gap-3">
+                <span class="bg-red-600 p-2 rounded-lg text-sm"><i class="fas fa-user-shield"></i></span>
+                <h1 class="text-lg font-bold">Sertifikat - Boshqaruv Tizimi</h1>
+            </div>
+            <button id="adminLogout" class="bg-slate-800 hover:bg-red-600 text-sm px-4 py-2 rounded-xl font-medium transition-colors">
+                Chiqish <i class="fas fa-sign-out-alt ml-1"></i>
+            </button>
+        </header>
+
+        <main class="p-4 lg:p-8 max-w-4xl mx-auto space-y-6">
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex items-center justify-between">
+                <div>
+                    <p class="text-sm font-medium text-slate-400 uppercase">Jami ro'yxatdan o'tganlar</p>
+                    <h3 id="usersCount" class="text-3xl font-bold text-slate-800 mt-1">0 ta</h3>
+                </div>
+                <div class="bg-blue-50 text-blue-600 p-4 rounded-2xl text-2xl"><i class="fas fa-users"></i></div>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col justify-between">
+                <div>
+                    <h3 class="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
+                        <i class="fas fa-list-ul text-blue-600"></i> Foydalanuvchilar ma'lumotlari
+                    </h3>
+                    <div class="overflow-x-auto">
+                        <table id="usersTable" class="w-full text-left text-sm mb-4">
+                            <thead>
+                                <tr class="bg-slate-50 border-b border-slate-100 text-slate-500 uppercase font-semibold text-xs">
+                                    <th class="p-3">Ism va Familiya</th>
+                                    <th class="p-3">Login</th>
+                                    <th class="p-3">Parol</th>
+                                    <th class="p-3">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="usersTableBody" class="text-slate-700 divide-y divide-slate-100"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="border-t border-slate-100 pt-4 flex justify-end">
+                    <button onclick="downloadExcel()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm px-5 py-2.5 rounded-xl shadow-md flex items-center gap-2 transition-all active:scale-95">
+                        <i class="font-bold far fa-file-excel text-lg"></i> Excel formatda yuklab olish
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function togglePass() {
+            const passInput = document.getElementById('admPass');
+            const eyeIcon = document.getElementById('eyeIcon');
+            if (passInput.type === "password") {
+                passInput.type = "text";
+                eyeIcon.className = "far fa-eye-slash";
+            } else {
+                passInput.type = "password";
+                eyeIcon.className = "far fa-eye";
+            }
+        }
+
+        document.getElementById('adminLoginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const loginVal = document.getElementById('admLogin').value.trim();
+            const passVal = document.getElementById('admPass').value.trim();
+            const errorDiv = document.getElementById('loginError');
+
+            if (loginVal === "admin23" && passVal === "admin23") {
+                errorDiv.classList.add('hidden');
+                document.getElementById('adminLoginCard').classList.add('hidden');
+                document.getElementById('adminPanelContent').classList.remove('hidden');
+                loadAdminData();
+            } else {
+                errorDiv.classList.remove('hidden');
+            }
+        });
+
+        // Ko'p foydalanuvchili tizimdan ma'lumotlarni o'qish
+        function loadAdminData() {
+            let usersList = JSON.parse(localStorage.getItem('usersList')) || [];
+            
+            // Agar eski tizimdan bitta foydalanuvchi qolib ketgan bo'lsa, uni ham ro'yxatga qo'shib yuboramiz
+            const oldUser = localStorage.getItem('savedUsername');
+            if (oldUser && usersList.length === 0) {
+                usersList.push({
+                    name: localStorage.getItem('userName') || 'Foydalanuvchi',
+                    username: oldUser,
+                    password: localStorage.getItem('savedPassword') || '1111',
+                    status: localStorage.getItem('isPremium') || 'Oddiy'
+                });
+                localStorage.setItem('usersList', JSON.stringify(usersList));
+            }
+
+            const tableBody = document.getElementById('usersTableBody');
+            const usersCountEl = document.getElementById('usersCount');
+
+            usersCountEl.innerText = usersList.length + " ta";
+
+            if (usersList.length > 0) {
+                tableBody.innerHTML = "";
+                usersList.forEach(user => {
+                    const statusBadge = user.status === 'Premium' 
+                        ? `<span class="bg-amber-100 text-amber-800 text-xs font-bold px-2.5 py-1 rounded-full"><i class="fas fa-crown text-amber-500 mr-1"></i> Premium</span>`
+                        : `<span class="bg-slate-100 text-slate-600 text-xs font-medium px-2.5 py-1 rounded-full">Oddiy</span>`;
+
+                    tableBody.innerHTML += `
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 font-medium text-slate-900">${user.name}</td>
+                            <td class="p-3 text-slate-500">@${user.username}</td>
+                            <td class="p-3 font-mono text-slate-600">${user.password}</td>
+                            <td class="p-3">${statusBadge}</td>
+                        </tr>
+                    `;
+                });
+            } else {
+                tableBody.innerHTML = `<tr><td colspan="4" class="p-4 text-center text-slate-400">Hozircha hech kim ro'yxatdan o'tmagan</td></tr>`;
+            }
+        }
+
+        // BARCHA FOYDALANUVCHILARNI EXCELGA YUKLASH
+        function downloadExcel() {
+            let usersList = JSON.parse(localStorage.getItem('usersList')) || [];
+            if (usersList.length === 0) {
+                alert("Yuklab olish uchun ro'yxatda foydalanuvchilar mavjud emas!");
+                return;
+            }
+
+            // Ma'lumotlarni chiroyli formatlash
+            const data = usersList.map(user => ({
+                "Ism va Familiya": user.name,
+                "Login": "@" + user.username,
+                "Parol": user.password,
+                "A'zolik Statusi": user.status || 'Oddiy'
+            }));
+
+            const worksheet = XLSX.utils.json_to_sheet(data);
+            const workbook = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(workbook, worksheet, "Foydalanuvchilar");
+            XLSX.writeFile(workbook, "foydalanuvchilar_ruyxati.xlsx");
+        }
+
+        document.getElementById('adminLogout').addEventListener('click', function() {
+            document.getElementById('adminLoginCard').classList.remove('hidden');
+            document.getElementById('adminPanelContent').classList.add('hidden');
+            document.getElementById('admLogin').value = '';
+            document.getElementById('admPass').value = '';
+        });
+    </script>
+</body>
+</html>

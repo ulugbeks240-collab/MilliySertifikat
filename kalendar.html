@@ -10,6 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* Dark mode uchun tezkor fonalmashtirgich */
+.dark-mode-active body { background-color: #0f172a !important; color: #f1f5f9 !important; }
         body { font-family: 'Inter', sans-serif; }
     </style>
 </head>
@@ -72,14 +74,13 @@
         </nav>
 
         <div class="p-4 border-t border-gray-100">
-                <a href="bildirishnoma.html"
-                    class="flex items-center justify-between p-3 text-slate-600 hover:bg-slate-50 rounded-xl cursor-pointer transition-all">
-                    <div class="flex items-center gap-2 font-medium">
-                        <i class="fas fa-bell text-slate-400"></i> Bildirishnomalar
-                    </div>
-                    <span class="bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">3</span>
-                </a>
-            </div>
+            <a href="bildirishnoma.html" class="flex items-center justify-between p-3 text-slate-600 hover:bg-slate-50 rounded-xl cursor-pointer transition-all">
+                <div class="flex items-center gap-2 font-medium">
+                    <i class="fas fa-bell text-slate-400"></i> Bildirishnomalar
+                </div>
+                <span class="bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">0</span>
+            </a>
+        </div>
     </aside>
 
     <main class="flex-1 p-4 lg:p-8 overflow-x-hidden">
@@ -90,7 +91,7 @@
                     <h2 class="text-2xl lg:text-3xl font-bold text-slate-900">O'quv kalendari</h2>
                     <p class="text-slate-500 text-sm mt-1">O'z rejalaringizni belgilang va kuzatib boring</p>
                 </div>
-                <button class="bg-blue-600 hover:bg-blue-700 text-white font-medium px-4 py-2.5 rounded-xl flex items-center justify-center gap-2 transition shadow-sm self-start sm:self-auto">
+                <button id="openModalBtn" class="bg-blue-600 hover:bg-blue-700 text-white font-medium px-4 py-2.5 rounded-xl flex items-center justify-center gap-2 transition shadow-sm self-start sm:self-auto">
                     <i class="fas fa-plus"></i> Yangi reja
                 </button>
             </div>
@@ -99,10 +100,10 @@
                 
                 <div class="lg:col-span-8 bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
                     <div class="flex justify-between items-center mb-6">
-                        <h3 class="font-bold text-slate-800 text-lg">Aprel 2026</h3>
+                        <h3 class="font-bold text-slate-800 text-lg" id="monthYearTitle"></h3>
                         <div class="flex gap-2 text-slate-400 bg-slate-50 p-1.5 rounded-xl border border-slate-100">
-                            <i class="fas fa-chevron-left p-2 cursor-pointer rounded-lg hover:bg-white hover:text-blue-600 transition-all"></i>
-                            <i class="fas fa-chevron-right p-2 cursor-pointer rounded-lg hover:bg-white hover:text-blue-600 transition-all"></i>
+                            <i class="fas fa-chevron-left p-2 cursor-pointer rounded-lg hover:bg-white hover:text-blue-600 transition-all" id="prevMonthBtn"></i>
+                            <i class="fas fa-chevron-right p-2 cursor-pointer rounded-lg hover:bg-white hover:text-blue-600 transition-all" id="nextMonthBtn"></i>
                         </div>
                     </div>
                     
@@ -110,54 +111,16 @@
                         <div>Yak</div><div>Du</div><div>Se</div><div>Chor</div><div>Pay</div><div>Jum</div><div>Shan</div>
                     </div>
 
-                    <div class="grid grid-cols-7 gap-2 text-sm font-medium">
-                        <div class="h-14"></div><div class="h-14"></div><div class="h-14"></div>
-                        
-                        <div class="h-14 flex items-center justify-center text-slate-300">1</div>
-                        <div class="h-14 flex items-center justify-center text-slate-300">2</div>
-                        <div class="h-14 flex items-center justify-center text-slate-300">3</div>
-                        <div class="h-14 flex items-center justify-center text-slate-300">4</div>
-                        
-                        <div class="h-14 bg-blue-50 hover:bg-blue-100/70 rounded-xl flex flex-col items-center justify-center text-blue-600 font-bold relative cursor-pointer transition-all">
-                            5 <span class="absolute bottom-1.5 text-blue-600 leading-none text-xl">•</span>
-                        </div>
-                        <div class="h-14 flex items-center justify-center hover:bg-slate-50 rounded-xl cursor-pointer transition-all">6</div>
-                        <div class="h-14 flex items-center justify-center hover:bg-slate-50 rounded-xl cursor-pointer transition-all">7</div>
-                        <div class="h-14 flex items-center justify-center hover:bg-slate-50 rounded-xl cursor-pointer transition-all">8</div>
-                        <div class="h-14 flex items-center justify-center hover:bg-slate-50 rounded-xl cursor-pointer transition-all">9</div>
-                        <div class="h-14 flex items-center justify-center hover:bg-slate-50 rounded-xl cursor-pointer transition-all">10</div>
-                        <div class="h-14 flex items-center justify-center hover:bg-slate-50 rounded-xl cursor-pointer transition-all">11</div>
-                        
-                        <div class="h-14 bg-blue-50 hover:bg-blue-100/70 rounded-xl flex flex-col items-center justify-center text-blue-600 font-bold relative cursor-pointer transition-all">
-                            12 <span class="absolute bottom-1.5 text-blue-600 leading-none text-xl">•</span>
-                        </div>
-                        <div class="h-14 flex items-center justify-center hover:bg-slate-50 rounded-xl cursor-pointer transition-all">13</div>
-                        <div class="h-14 flex items-center justify-center hover:bg-slate-50 rounded-xl cursor-pointer transition-all">14</div>
-                        <div class="h-14 flex items-center justify-center hover:bg-slate-50 rounded-xl cursor-pointer transition-all">15</div>
-                        <div class="h-14 flex items-center justify-center hover:bg-slate-50 rounded-xl cursor-pointer transition-all">16</div>
-                        <div class="h-14 bg-blue-600 rounded-xl flex flex-col items-center justify-center text-white font-bold relative shadow-md shadow-blue-200 cursor-pointer hover:bg-blue-700 transition-all">
-                            17 <span class="absolute bottom-1.5 text-white leading-none text-xl">••</span>
-                        </div>
-                        <div class="h-14 flex items-center justify-center hover:bg-slate-50 rounded-xl cursor-pointer transition-all">18</div>
-                    </div>
+                    <div class="grid grid-cols-7 gap-2 text-sm font-medium" id="calendarDays"></div>
                 </div>
 
                 <div class="lg:col-span-4 space-y-6">
                     
                     <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
                         <h3 class="font-bold text-slate-900 text-base mb-4 flex items-center gap-2">
-                            <span class="text-lg">📌</span> Bugungi rejalar
+                            <span class="text-lg">📌</span> <span id="selectedDateTitle">Bugungi rejalar</span>
                         </h3>
-                        <div class="space-y-3">
-                            <div class="bg-rose-50/60 p-4 rounded-xl border-l-4 border-rose-500 hover:bg-rose-50 transition-all">
-                                <p class="text-xs text-rose-500 font-bold flex items-center gap-1"><i class="far fa-clock"></i> 09:00</p>
-                                <p class="text-sm font-bold text-slate-800 mt-1">Mock imtihon topshirish</p>
-                            </div>
-                            <div class="bg-blue-50/60 p-4 rounded-xl border-l-4 border-blue-500 hover:bg-blue-50 transition-all">
-                                <p class="text-xs text-blue-500 font-bold flex items-center gap-1"><i class="far fa-clock"></i> 15:00</p>
-                                <p class="text-sm font-bold text-slate-800 mt-1">Ingliz tili - Grammar test</p>
-                            </div>
-                        </div>
+                        <div class="space-y-3" id="plansContainer"></div>
                     </div>
 
                     <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
@@ -167,15 +130,15 @@
                         <div class="space-y-4">
                             <div class="flex justify-between items-center bg-slate-50 px-4 py-2.5 rounded-xl">
                                 <span class="text-slate-500 text-sm font-medium">Jami testlar</span>
-                                <span class="font-bold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-lg text-xs">12 ta</span>
+                                <span class="font-bold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-lg text-xs" id="totalTestsCount">0 ta</span>
                             </div>
                             <div class="flex justify-between items-center bg-slate-50 px-4 py-2.5 rounded-xl">
                                 <span class="text-slate-500 text-sm font-medium">Video darslar</span>
-                                <span class="font-bold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-lg text-xs">8 ta</span>
+                                <span class="font-bold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-lg text-xs">0 ta</span>
                             </div>
                             <div class="flex justify-between items-center bg-slate-50 px-4 py-2.5 rounded-xl">
                                 <span class="text-slate-500 text-sm font-medium">Mock imtihonlar</span>
-                                <span class="font-bold text-purple-600 bg-purple-50 px-2.5 py-1 rounded-lg text-xs">2 ta</span>
+                                <span class="font-bold text-purple-600 bg-purple-50 px-2.5 py-1 rounded-lg text-xs" id="totalMocksCount">0 ta</span>
                             </div>
                         </div>
                     </div>
@@ -185,9 +148,44 @@
         </div>
     </main>
 
+    <div id="planModal" class="hidden fixed inset-0 bg-slate-900/50 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl w-full max-w-md p-6 shadow-xl border border-slate-100">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-bold text-slate-900">Yangi reja qo'shish</h3>
+                <button id="closeModalBtn" class="text-slate-400 hover:text-slate-600 text-xl">&times;</button>
+            </div>
+            <form id="planForm" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Sana</label>
+                    <input type="date" id="planDate" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-blue-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Vaqt</label>
+                    <input type="time" id="planTime" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-blue-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Reja turi</label>
+                    <select id="planType" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-blue-500">
+                        <option value="test">Oddiy Test / Dars</option>
+                        <option value="mock">Mock Imtihon</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Reja matni</label>
+                    <input type="text" id="planText" placeholder="Masalan: Matematika test yechish" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-blue-500">
+                </div>
+                <div class="flex gap-3 pt-2">
+                    <button type="button" id="cancelBtn" class="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-600 font-medium py-2.5 rounded-xl text-sm transition">Bekor qilish</button>
+                    <button type="submit" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2.5 rounded-xl text-sm transition shadow-sm shadow-blue-200">Qo'shish</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const btn = document.getElementById('hamburgerBtn');
+            // Sidebar mobil menyusi
+            const hamburgerBtn = document.getElementById('hamburgerBtn');
             const sidebar = document.getElementById('sidebar');
             const overlay = document.getElementById('sidebarOverlay');
 
@@ -195,10 +193,216 @@
                 sidebar.classList.toggle('-translate-x-full');
                 overlay.classList.toggle('hidden');
             }
+            hamburgerBtn?.addEventListener('click', toggleSidebar);
+            overlay?.addEventListener('click', toggleSidebar);
 
-            btn.addEventListener('click', toggleSidebar);
-            overlay.addEventListener('click', toggleSidebar);
+            // LocalStorage xavfsiz o'qish funksiyasi
+            function getStoredPlans() {
+                try {
+                    const stored = localStorage.getItem('user_plans');
+                    return stored ? JSON.parse(stored) : {};
+                } catch (e) {
+                    console.warn("LocalStorage taqiqlangan, vaqtincha xotira yoqildi.");
+                    return {};
+                }
+            }
+
+            // LocalStorage xavfsiz yozish funksiyasi
+            function savePlans() {
+                try {
+                    localStorage.setItem('user_plans', JSON.stringify(plans));
+                } catch (e) {
+                    console.error("Ma'lumot saqlanmadi (file:// xavfsizlik cheklovi sababli). Uni faqat Live Serverda ishlating!");
+                }
+            }
+
+            let plans = getStoredPlans();
+            const months = ["Yanvar", "Fevral", "Mart", "Aprel", "May", "Iyun", "Iyul", "Avgust", "Sentabr", "Oktabr", "Noyabr", "Dekabr"];
+            let displayDate = new Date(); 
+            let selectedDateStr = formatDate(displayDate);
+            let isFirstLoad = true;
+
+            // Elementlar
+            const monthYearTitle = document.getElementById('monthYearTitle');
+            const calendarDays = document.getElementById('calendarDays');
+            const prevBtn = document.getElementById('prevMonthBtn');
+            const nextBtn = document.getElementById('nextMonthBtn');
+            const plansContainer = document.getElementById('plansContainer');
+            const selectedDateTitle = document.getElementById('selectedDateTitle');
+            const totalTestsCount = document.getElementById('totalTestsCount');
+            const totalMocksCount = document.getElementById('totalMocksCount');
+
+            // Modal
+            const planModal = document.getElementById('planModal');
+            const openModalBtn = document.getElementById('openModalBtn');
+            const closeModalBtn = document.getElementById('closeModalBtn');
+            const cancelBtn = document.getElementById('cancelBtn');
+            const planForm = document.getElementById('planForm');
+
+            function formatDate(date) {
+                const d = new Date(date);
+                let month = '' + (d.getMonth() + 1);
+                let day = '' + d.getDate();
+                const year = d.getFullYear();
+                if (month.length < 2) month = '0' + month;
+                if (day.length < 2) day = '0' + day;
+                return [year, month, day].join('-');
+            }
+
+            function renderCalendar() {
+                const year = displayDate.getFullYear();
+                const month = displayDate.getMonth();
+                monthYearTitle.textContent = `${months[month]} ${year}`;
+
+                const firstDayIndex = new Date(year, month, 1).getDay();
+                const lastDay = new Date(year, month + 1, 0).getDate();
+                const todayStr = formatDate(new Date());
+
+                let daysHTML = "";
+
+                for (let i = 0; i < firstDayIndex; i++) {
+                    daysHTML += `<div class="h-14"></div>`;
+                }
+
+                for (let day = 1; day <= lastDay; day++) {
+                    const currentLoopDate = new Date(year, month, day);
+                    const currentLoopStr = formatDate(currentLoopDate);
+                    
+                    const dayPlans = plans[currentLoopStr] || [];
+                    const hasPlans = dayPlans.length > 0;
+                    const isToday = currentLoopStr === todayStr;
+                    const isSelected = currentLoopStr === selectedDateStr && !isFirstLoad;
+
+                    let classes = "h-14 flex flex-col items-center justify-center rounded-xl cursor-pointer transition-all relative font-medium ";
+                    
+                    if (isSelected) {
+                        classes += "bg-blue-600 text-white font-bold shadow-md shadow-blue-200 hover:bg-blue-700";
+                    } else if (isToday) {
+                        classes += "bg-blue-50 text-blue-600 font-bold hover:bg-blue-100";
+                    } else {
+                        classes += "hover:bg-slate-50 text-slate-800";
+                    }
+
+                    let dot = hasPlans ? `<span class="absolute bottom-1.5 text-xs ${isSelected ? 'text-white' : 'text-blue-500'} font-bold">•</span>` : "";
+
+                    daysHTML += `
+                        <div class="${classes}" onclick="selectDate('${currentLoopStr}')">
+                            ${day} ${dot}
+                        </div>`;
+                }
+
+                calendarDays.innerHTML = daysHTML;
+                renderPlans();
+                updateCounters();
+            }
+
+            window.selectDate = function(dateStr) {
+                isFirstLoad = false;
+                selectedDateStr = dateStr;
+                const d = new Date(dateStr);
+                selectedDateTitle.textContent = `${d.getDate()}-${months[d.getMonth()]} rejalari`;
+                renderCalendar();
+            }
+
+            function renderPlans() {
+                const dayPlans = plans[selectedDateStr] || [];
+                
+                if(isFirstLoad) {
+                    selectedDateTitle.textContent = "Bugungi rejalar";
+                }
+
+                if (dayPlans.length === 0) {
+                    plansContainer.innerHTML = `
+                        <div class="text-center py-6 text-slate-400 text-sm">
+                            <i class="far fa-calendar-times text-2xl block mb-2 opacity-60"></i>
+                            Bu kun uchun rejalar yo'q
+                        </div>`;
+                } else {
+                    let plansHTML = "";
+                    dayPlans.forEach((plan, index) => {
+                        const bgClass = plan.type === 'mock' ? 'bg-purple-50/60 border-purple-500 text-purple-600' : 'bg-blue-50/60 border-blue-500 text-blue-600';
+                        plansHTML += `
+                            <div class="p-4 rounded-xl border-l-4 ${bgClass} flex justify-between items-center transition-all">
+                                <div>
+                                    <p class="text-xs font-bold flex items-center gap-1"><i class="far fa-clock"></i> ${plan.time}</p>
+                                    <p class="text-sm font-bold text-slate-800 mt-1">${plan.text}</p>
+                                </div>
+                                <button onclick="deletePlan('${selectedDateStr}', ${index})" class="text-slate-400 hover:text-red-500 p-2 text-base transition-colors">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </div>`;
+                    });
+                    plansContainer.innerHTML = plansHTML;
+                }
+            }
+
+            // O'chirish funksiyasi
+            window.deletePlan = function(dateStr, index) {
+                if (plans[dateStr]) {
+                    plans[dateStr].splice(index, 1);
+                    if (plans[dateStr].length === 0) {
+                        delete plans[dateStr];
+                    }
+                    savePlans();
+                    renderCalendar();
+                }
+            }
+
+            function updateCounters() {
+                let testCount = 0;
+                let mockCount = 0;
+                Object.values(plans).forEach(dayPlans => {
+                    dayPlans.forEach(plan => {
+                        if(plan.type === 'mock') mockCount++;
+                        else testCount++;
+                    });
+                });
+                totalTestsCount.textContent = `${testCount} ta`;
+                totalMocksCount.textContent = `${mockCount} ta`;
+            }
+
+            openModalBtn.addEventListener('click', () => {
+                document.getElementById('planDate').value = selectedDateStr;
+                planModal.classList.remove('hidden');
+            });
+            const closeModal = () => planModal.classList.add('hidden');
+            closeModalBtn.addEventListener('click', closeModal);
+            cancelBtn.addEventListener('click', closeModal);
+
+            planForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const date = document.getElementById('planDate').value;
+                const time = document.getElementById('planTime').value;
+                const text = document.getElementById('planText').value;
+                const type = document.getElementById('planType').value;
+
+                if (!plans[date]) plans[date] = [];
+                plans[date].push({ time, text, type });
+
+                savePlans();
+                planForm.reset();
+                closeModal();
+                selectDate(date);
+            });
+
+            prevBtn.addEventListener('click', () => {
+                displayDate.setMonth(displayDate.getMonth() - 1);
+                renderCalendar();
+            });
+            nextBtn.addEventListener('click', () => {
+                displayDate.setMonth(displayDate.getMonth() + 1);
+                renderCalendar();
+            });
+
+            renderCalendar();
         });
+        // Sahifa yuklanishidan oldin xotirani tekshirish
+        (function () {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark-mode-active');
+            }
+        })();
     </script>
 </body>
 </html>

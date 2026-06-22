@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="uz">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,16 +11,57 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body { font-family: 'Inter', sans-serif; }
-        /* Toggle-switch animatsiyasi uchun qo'shimcha uslub */
-        .dot { transition: all 0.3s ease-in-out; }
-        input:checked ~ .dot { transform: translateX(100%); }
-        input:checked ~ .block { background-color: #2563eb; }
-    </style>
-</head>
-<body class="bg-slate-50 text-slate-800 antialiased flex flex-col lg:flex-row min-h-screen">
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
 
-    <div class="lg:hidden flex items-center justify-between bg-white px-4 py-3 border-b border-gray-200 sticky top-0 z-50">
+        .dot {
+            transition: all 0.2s ease-in-out;
+        }
+
+        input:checked~.dot {
+            transform: translateX(1.25rem);
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(1rem);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .toast-animate {
+            animation: slideIn 0.3s ease-out forwards;
+        }
+    </style>
+    <script>
+        // XAVFSIZLIK: Tizimga kirmagan bo'lsa login.html ga haydash
+        if (localStorage.getItem('isLoggedIn') !== 'true') {
+            window.location.href = 'login.html';
+        }
+
+        // Sahifa yuklanishidan oldin mavzuni xotiradan tekshirish
+        (function () {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark-mode-active');
+            }
+        })();
+    </script>
+</head>
+
+<body id="appBody" class="bg-slate-50 text-slate-800 antialiased flex flex-col lg:flex-row min-h-screen">
+
+    <div id="toastContainer" class="fixed bottom-5 right-5 z-50 flex flex-col gap-3 max-w-sm w-full px-4 sm:px-0"></div>
+
+    <div id="mobileHeader"
+        class="lg:hidden flex items-center justify-between bg-white px-4 py-3 border-b border-gray-200 sticky top-0 z-50 transition-colors">
         <button class="text-gray-600 focus:outline-none text-xl" id="hamburgerBtn">
             <i class="fas fa-bars"></i>
         </button>
@@ -27,180 +69,208 @@
             <div class="bg-blue-600 text-white p-2 rounded-lg text-sm">
                 <i class="fas fa-book-open"></i>
             </div>
-            <span class="font-bold text-gray-800 text-lg">Sertifikat</span>
+            <span class="font-bold text-gray-800 id-text text-lg">Sertifikat</span>
         </div>
         <div class="w-6"></div>
     </div>
 
     <div class="hidden fixed inset-0 bg-slate-900/40 z-40 lg:hidden" id="sidebarOverlay"></div>
 
-    <aside class="fixed inset-y-0 left-0 -translate-x-full lg:translate-x-0 lg:sticky lg:h-screen w-64 bg-white border-r border-gray-200 flex flex-col z-50 transition-transform duration-300 ease-in-out" id="sidebar">
+    <aside
+        class="fixed inset-y-0 left-0 -translate-x-full lg:translate-x-0 lg:sticky lg:h-screen w-64 bg-white border-r border-gray-200 flex flex-col z-50 transition-all duration-300 ease-in-out"
+        id="sidebar">
         <div class="p-6 flex items-center gap-3 border-b border-gray-50">
             <div class="bg-blue-600 text-white p-2.5 rounded-xl shadow-md shadow-blue-200">
                 <i class="fas fa-book-open"></i>
             </div>
             <div>
-                <h1 class="font-bold text-gray-900 leading-tight">Sertifikat</h1>
+                <h1 class="font-bold text-gray-900 leading-tight id-text">Sertifikat</h1>
                 <p class="text-xs text-slate-500 font-medium">Ta'lim platformasi</p>
             </div>
         </div>
 
         <nav class="flex-1 px-4 py-4 space-y-1 overflow-y-auto">
-            <a href="index.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 hover:bg-slate-50 font-medium transition-all">
+            <a href="index.html"
+                class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 hover:bg-slate-50 font-medium transition-all">
                 <i class="fas fa-home w-5 text-center text-lg text-slate-400"></i> Bosh sahifa
             </a>
-            <a href="test.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 hover:bg-slate-50 font-medium transition-all">
+            <a href="test.html"
+                class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 hover:bg-slate-50 font-medium transition-all">
                 <i class="fas fa-file-alt w-5 text-center text-lg text-slate-400"></i> Testlar
             </a>
-            <a href="video.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 hover:bg-slate-50 font-medium transition-all">
+            <a href="video.html"
+                class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 hover:bg-slate-50 font-medium transition-all">
                 <i class="fas fa-play-circle w-5 text-center text-lg text-slate-400"></i> Video darslar
             </a>
-            <a href="mock.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 hover:bg-slate-50 font-medium transition-all">
+            <a href="mock.html"
+                class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 hover:bg-slate-50 font-medium transition-all">
                 <i class="fas fa-edit w-5 text-center text-lg text-slate-400"></i> Mock imtihon
             </a>
-            <a href="kalendar.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 hover:bg-slate-50 font-medium transition-all">
+            <a href="kalendar.html"
+                class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 hover:bg-slate-50 font-medium transition-all">
                 <i class="fas fa-calendar-alt w-5 text-center text-lg text-slate-400"></i> Kalendar
             </a>
-            <a href="statistika.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 hover:bg-slate-50 font-medium transition-all">
+            <a href="statistika.html"
+                class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 hover:bg-slate-50 font-medium transition-all">
                 <i class="fas fa-chart-bar w-5 text-center text-lg text-slate-400"></i> Statistika
             </a>
-            <a href="reyting.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 hover:bg-slate-50 font-medium transition-all">
+            <a href="reyting.html"
+                class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 hover:bg-slate-50 font-medium transition-all">
                 <i class="fas fa-trophy w-5 text-center text-lg text-slate-400"></i> Reyting
             </a>
-            <a href="profil.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 hover:bg-slate-50 font-medium transition-all">
+            <a href="profil.html"
+                class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 hover:bg-slate-50 font-medium transition-all">
                 <i class="fas fa-user w-5 text-center text-lg text-slate-400"></i> Profil
             </a>
-            <a href="sozlamlar.html" class="flex items-center gap-3 px-4 py-3 rounded-xl bg-blue-600 text-white font-medium shadow-md shadow-blue-200 transition-all">
+            <a href="sozlamlar.html"
+                class="flex items-center gap-3 px-4 py-3 rounded-xl bg-blue-600 text-white font-medium shadow-md shadow-blue-200 transition-all">
                 <i class="fas fa-cog w-5 text-center text-lg"></i> Sozlamalar
             </a>
         </nav>
 
         <div class="p-4 border-t border-gray-100">
-                <a href="bildirishnoma.html"
-                    class="flex items-center justify-between p-3 text-slate-600 hover:bg-slate-50 rounded-xl cursor-pointer transition-all">
-                    <div class="flex items-center gap-2 font-medium">
-                        <i class="fas fa-bell text-slate-400"></i> Bildirishnomalar
-                    </div>
-                    <span class="bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">3</span>
-                </a>
-            </div>
+            <button id="logoutBtn"
+                class="w-full flex items-center gap-2 p-3 text-red-500 hover:bg-red-50 rounded-xl cursor-pointer font-medium transition-all text-sm">
+                <i class="fas fa-sign-out-alt"></i> Tizimdan chiqish
+            </button>
+        </div>
     </aside>
 
     <main class="flex-1 p-4 lg:p-8 overflow-x-hidden">
         <div class="max-w-3xl mx-auto">
-            
-            <header class="mb-8">
-                <h2 class="text-2xl lg:text-3xl font-bold text-slate-900">Sozlamalar</h2>
-                <p class="text-slate-500 mt-1">Hisobingiz va platforma interfeysini shaxsiylashtiring</p>
+
+            <header class="mb-8 flex justify-between items-center">
+                <div>
+                    <h2 class="text-2xl lg:text-3xl font-bold text-slate-900 id-title">Sozlamalar</h2>
+                    <p id="userWelcome" class="text-slate-500 mt-1">Hisobingizni shaxsiylashtiring</p>
+                </div>
             </header>
 
             <div class="space-y-6">
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 lg:p-8">
+
+                <div id="premiumStatusCard" class="card bg-white rounded-2xl shadow-sm border border-slate-100 p-6 lg:p-8 transition-colors">
+                    <div class="flex items-center gap-3 border-b border-slate-50 pb-4 mb-6">
+                        <span class="text-xl text-amber-500 bg-amber-50 p-2 rounded-xl"><i class="fas fa-crown"></i></span>
+                        <h3 class="text-lg font-bold text-slate-800 id-text">Obuna holati (Tarif)</h3>
+                    </div>
+                    <div id="premiumContainer">
+                        </div>
+                </div>
+
+                <div class="card bg-white rounded-2xl shadow-sm border border-slate-100 p-6 lg:p-8 transition-colors">
                     <div class="flex items-center gap-3 border-b border-slate-50 pb-4 mb-6">
                         <span class="text-xl text-blue-600 bg-blue-50 p-2 rounded-xl"><i class="fas fa-bell"></i></span>
-                        <h3 class="text-lg font-bold text-slate-800">Bildirishnomalar</h3>
+                        <h3 class="text-lg font-bold text-slate-800 id-text">Bildirishnomalar</h3>
                     </div>
-                    
+
                     <div class="space-y-6">
                         <div class="flex items-center justify-between">
                             <div>
-                                <label for="email_notif" class="text-slate-700 font-semibold text-sm cursor-pointer block">Email bildirishnomalar</label>
-                                <span class="text-xs text-slate-400">Muhim yangiliklar va hisobotlar emailingizga yuboriladi</span>
-                            </div>
-                            <div class="relative inline-block w-11 h-6 align-middle select-none">
-                                <input type="checkbox" id="email_notif" checked class="opacity-0 absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer z-10">
-                                <label for="email_notif" class="block overflow-hidden h-6 rounded-full bg-slate-200 cursor-pointer block transition-colors"></label>
-                                <span class="dot absolute block w-4 h-4 rounded-full bg-white top-1 left-1 pointer-events-none shadow-sm"></span>
-                            </div>
-                        </div>
-
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <label for="push_notif" class="text-slate-700 font-semibold text-sm cursor-pointer block">Push bildirishnomalar</label>
+                                <label for="push_notif"
+                                    class="text-slate-700 id-text font-semibold text-sm cursor-pointer block">Push
+                                    bildirishnomalar</label>
                                 <span class="text-xs text-slate-400">Brauzer yoki mobil qurilmangizga tezkor xabarlar</span>
                             </div>
                             <div class="relative inline-block w-11 h-6 align-middle select-none">
-                                <input type="checkbox" id="push_notif" checked class="opacity-0 absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer z-10">
-                                <label for="push_notif" class="block overflow-hidden h-6 rounded-full bg-slate-200 cursor-pointer block transition-colors"></label>
-                                <span class="dot absolute block w-4 h-4 rounded-full bg-white top-1 left-1 pointer-events-none shadow-sm"></span>
+                                <input type="checkbox" id="push_notif" data-name="Push bildirishnomalar" checked
+                                    class="opacity-0 absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer z-10">
+                                <label for="push_notif"
+                                    class="block overflow-hidden h-6 rounded-full bg-slate-200 cursor-pointer transition-colors"></label>
+                                <span
+                                    class="dot absolute block w-4 h-4 rounded-full bg-white top-1 left-1 pointer-events-none shadow-sm"></span>
                             </div>
                         </div>
 
                         <div class="flex items-center justify-between">
                             <div>
-                                <label for="new_lessons" class="text-slate-700 font-semibold text-sm cursor-pointer block">Yangi darslar haqida</label>
+                                <label for="new_lessons"
+                                    class="text-slate-700 id-text font-semibold text-sm cursor-pointer block">Yangi darslar haqida</label>
                                 <span class="text-xs text-slate-400">Kursga yangi video va materiallar yuklanganda ogohlantirish</span>
                             </div>
                             <div class="relative inline-block w-11 h-6 align-middle select-none">
-                                <input type="checkbox" id="new_lessons" checked class="opacity-0 absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer z-10">
-                                <label for="new_lessons" class="block overflow-hidden h-6 rounded-full bg-slate-200 cursor-pointer block transition-colors"></label>
-                                <span class="dot absolute block w-4 h-4 rounded-full bg-white top-1 left-1 pointer-events-none shadow-sm"></span>
+                                <input type="checkbox" id="new_lessons" data-name="Yangi darslar bildirishnomasi"
+                                    checked
+                                    class="opacity-0 absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer z-10">
+                                <label for="new_lessons"
+                                    class="block overflow-hidden h-6 rounded-full bg-slate-200 cursor-pointer transition-colors"></label>
+                                <span
+                                    class="dot absolute block w-4 h-4 rounded-full bg-white top-1 left-1 pointer-events-none shadow-sm"></span>
                             </div>
                         </div>
 
                         <div class="flex items-center justify-between">
                             <div>
-                                <label for="test_reminders" class="text-slate-700 font-semibold text-sm cursor-pointer block">Testlar eslatmasi</label>
+                                <label for="test_reminders"
+                                    class="text-slate-700 id-text font-semibold text-sm cursor-pointer block">Testlar eslatmasi</label>
                                 <span class="text-xs text-slate-400">Tugallanmagan testlar va mock imtihon muddatlari eslatmasi</span>
                             </div>
                             <div class="relative inline-block w-11 h-6 align-middle select-none">
-                                <input type="checkbox" id="test_reminders" class="opacity-0 absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer z-10">
-                                <label for="test_reminders" class="block overflow-hidden h-6 rounded-full bg-slate-200 cursor-pointer block transition-colors"></label>
-                                <span class="dot absolute block w-4 h-4 rounded-full bg-white top-1 left-1 pointer-events-none shadow-sm"></span>
+                                <input type="checkbox" id="test_reminders" data-name="Testlar eslatmasi"
+                                    class="opacity-0 absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer z-10">
+                                <label for="test_reminders"
+                                    class="block overflow-hidden h-6 rounded-full bg-slate-200 cursor-pointer transition-colors"></label>
+                                <span
+                                    class="dot absolute block w-4 h-4 rounded-full bg-white top-1 left-1 pointer-events-none shadow-sm"></span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 lg:p-8">
+                <div class="card bg-white rounded-2xl shadow-sm border border-slate-100 p-6 lg:p-8 transition-colors">
                     <div class="flex items-center gap-3 border-b border-slate-50 pb-4 mb-6">
                         <span class="text-xl text-blue-600 bg-blue-50 p-2 rounded-xl"><i class="fas fa-lock"></i></span>
-                        <h3 class="text-lg font-bold text-slate-800">Xavfsizlik</h3>
+                        <h3 class="text-lg font-bold text-slate-800 id-text">Xavfsizlik (Parolni o'zgartirish)</h3>
                     </div>
-                    
-                    <form class="space-y-4" onsubmit="event.preventDefault(); alert('Parol o\'zgartirildi!');">
+
+                    <form class="space-y-4" id="passwordForm">
                         <div>
-                            <label class="block text-sm font-semibold text-slate-700 mb-1">Joriy parol</label>
-                            <input type="password" placeholder="••••••••" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-sm transition-all">
+                            <label class="block text-sm font-semibold text-slate-700 id-text mb-1">Joriy parol</label>
+                            <input type="password" id="currentPass" placeholder="••••••••"
+                                class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-sm bg-transparent transition-all">
                         </div>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
-                                <label class="block text-sm font-semibold text-slate-700 mb-1">Yangi parol</label>
-                                <input type="password" placeholder="Min. 8 ta belgi" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-sm transition-all">
+                                <label class="block text-sm font-semibold text-slate-700 id-text mb-1">Yangi parol</label>
+                                <input type="password" id="newPass" placeholder="Min. 6 ta belgi"
+                                    class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-sm bg-transparent transition-all">
                             </div>
                             <div>
-                                <label class="block text-sm font-semibold text-slate-700 mb-1">Yangi parolni tasdiqlang</label>
-                                <input type="password" placeholder="Parolni takrorlang" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-sm transition-all">
+                                <label class="block text-sm font-semibold text-slate-700 id-text mb-1">Yangi parolni tasdiqlang</label>
+                                <input type="password" id="confirmPass" placeholder="Parolni takrorlang"
+                                    class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-sm bg-transparent transition-all">
                             </div>
                         </div>
                         <div class="pt-2 flex justify-end">
-                            <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm px-5 py-2.5 rounded-xl transition-colors shadow-sm shadow-blue-100 active:scale-95">
+                            <button type="submit"
+                                class="bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm px-5 py-2.5 rounded-xl transition-colors shadow-sm shadow-blue-100 active:scale-95">
                                 Parolni yangilash
                             </button>
                         </div>
                     </form>
                 </div>
 
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 lg:p-8">
+                <div class="card bg-white rounded-2xl shadow-sm border border-slate-100 p-6 lg:p-8 transition-colors">
                     <div class="flex items-center gap-3 border-b border-slate-50 pb-4 mb-6">
                         <span class="text-xl text-blue-600 bg-blue-50 p-2 rounded-xl"><i class="fas fa-globe"></i></span>
-                        <h3 class="text-lg font-bold text-slate-800">Tizim parametrlari</h3>
+                        <h3 class="text-lg font-bold text-slate-800 id-text">Tizim parametrlari</h3>
                     </div>
-                    
+
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <div>
-                            <label class="block text-sm font-semibold text-slate-700 mb-2">Interfeys tili</label>
-                            <select class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-blue-500 text-sm bg-white cursor-pointer transition-all">
-                                <option value="uz" selected>O'zbekcha (UZ)</option>
-                                <option value="ru">Русский (RU)</option>
-                                <option value="en">English (EN)</option>
+                            <label class="block text-sm font-semibold text-slate-700 id-text mb-2">Interfeys tili</label>
+                            <select id="languageSelect"
+                                class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-blue-500 text-sm bg-transparent cursor-pointer transition-all">
+                                <option value="uz" class="text-slate-800" selected>O'zbekcha (UZ)</option>
+                                <option value="ru" class="text-slate-800">Русский (RU)</option>
+                                <option value="en" class="text-slate-800">English (EN)</option>
                             </select>
                         </div>
                         <div>
-                            <label class="block text-sm font-semibold text-slate-700 mb-2">Mavzu (Theme)</label>
-                            <select class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-blue-500 text-sm bg-white cursor-pointer transition-all">
-                                <option value="light" selected>Yorug' mavzu (Light)</option>
-                                <option value="dark">Tungi mavzu (Dark)</option>
+                            <label class="block text-sm font-semibold text-slate-700 id-text mb-2">Mavzu (Theme)</label>
+                            <select id="themeSelect"
+                                class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-blue-500 text-sm bg-transparent cursor-pointer transition-all">
+                                <option value="light" class="text-slate-800" selected>Yorug' mavzu (Light)</option>
+                                <option value="dark" class="text-slate-800">Tungi mavzu (Dark)</option>
                             </select>
                         </div>
                     </div>
@@ -210,8 +280,131 @@
     </main>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Hamburger menyu logikasi
+        document.addEventListener('DOMContentLoaded', function () {
+
+            // Foydalanuvchi ma'lumotlarini to'g'ri o'qish
+            const userName = localStorage.getItem('userName') || 'Foydalanuvchi';
+            const currentUsername = localStorage.getItem('savedUsername') || 'guest';
+            document.getElementById('userWelcome').innerText = `${userName} (@${currentUsername})`;
+
+            // --- REAL PREMIUM TEKSHIRUVI VA DISPLAY QISMI ---
+            function checkAndRenderPremium() {
+                const usersList = JSON.parse(localStorage.getItem('usersList')) || [];
+                const foundUser = usersList.find(u => u.username === currentUsername);
+                const premiumContainer = document.getElementById('premiumContainer');
+
+                // Agar foydalanuvchi bazada Premium bo'lsa
+                if (foundUser && foundUser.status === 'Premium') {
+                    premiumContainer.innerHTML = `
+                        <div class="bg-gradient-to-r from-amber-500 to-yellow-600 text-white p-6 rounded-2xl shadow-lg border border-amber-400">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <span class="bg-white/20 text-xs font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">Faol</span>
+                                    <h4 class="text-xl font-bold mt-2"><i class="fas fa-crown mr-1"></i> Premium Tarifa</h4>
+                                    <p class="text-amber-100 text-xs mt-1">Barcha testlar va mock imtihonlar ochiq</p>
+                                </div>
+                                <i class="fas fa-shield-alt text-4xl text-white/30"></i>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    // Agar oddiy a'zo bo'lsa, to'lov qilish tartibini ko'rsatish
+                    premiumContainer.innerHTML = `
+                        <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-3">
+                            <p class="text-sm text-slate-600 font-medium">Siz hozircha <span class="font-bold text-slate-800">Oddiy</span> tarifdasiz. Premiumga o'tish uchun quyidagi karta raqamiga to'lov qiling va chekni adminga yuboring:</p>
+                            <div class="bg-white p-3 rounded-xl border border-slate-100 flex items-center justify-between font-mono font-bold text-blue-600 text-base">
+                                <span>💳 8600 1234 5678 9012</span>
+                                <span class="text-xs text-slate-400 font-sans font-medium">Xalq Banki</span>
+                            </div>
+                            <p class="text-xs text-red-500 font-semibold"><i class="fas fa-info-circle"></i> Diqqat: Admin chekni tasdiqlagach, profilingiz avtomatik Premium bo'ladi.</p>
+                        </div>
+                    `;
+                }
+            }
+            checkAndRenderPremium(); // Funktsiyani ishga tushirish
+
+            // --- Toast Bildirishnoma chiqarish ---
+            const toastContainer = document.getElementById('toastContainer');
+            function showToast(message, type = 'success') {
+                const toast = document.createElement('div');
+                toast.className = `toast-animate flex items-center gap-3 bg-white border border-slate-100 shadow-xl shadow-slate-200/80 p-4 rounded-2xl text-sm font-medium transition-all transform`;
+
+                if (localStorage.getItem('theme') === 'dark') {
+                    toast.classList.remove('bg-white', 'shadow-slate-200/80', 'border-slate-100');
+                    toast.classList.add('bg-slate-800', 'border-slate-700', 'shadow-black/20', 'text-slate-100');
+                }
+
+                const icon = type === 'success'
+                    ? '<i class="fas fa-check-circle text-emerald-500 text-lg"></i>'
+                    : '<i class="fas fa-times-circle text-red-500 text-lg"></i>';
+
+                toast.innerHTML = `${icon} <div>${message}</div>`;
+                toastContainer.appendChild(toast);
+
+                setTimeout(() => {
+                    toast.style.opacity = '0';
+                    toast.style.transform = 'translateY(-10px)';
+                    setTimeout(() => toast.remove(), 300);
+                }, 3000);
+            }
+
+            // --- Tizimdan chiqish logikasi ---
+            document.getElementById('logoutBtn').addEventListener('click', function () {
+                localStorage.removeItem('isLoggedIn');
+                localStorage.removeItem('userName');
+                localStorage.removeItem('savedUsername');
+                localStorage.removeItem('savedPassword');
+                localStorage.removeItem('isPremium');
+                window.location.href = 'login.html';
+            });
+
+            // --- Parol inputlarini qattiq tekshirish ---
+            document.getElementById('passwordForm').addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const currentPass = document.getElementById('currentPass').value;
+                const newPass = document.getElementById('newPass').value;
+                const confirmPass = document.getElementById('confirmPass').value;
+                const realSavedPassword = localStorage.getItem('savedPassword');
+
+                if (!currentPass || !newPass || !confirmPass) {
+                    showToast("Iltimos, barcha parol maydonlarini to'ldiring!", 'error');
+                    return;
+                }
+
+                // XAVFSIZLIK TEKSHIRUVI: Joriy parol bazadagiga mosmi?
+                if (currentPass !== realSavedPassword) {
+                    showToast("Amaldagi joriy parolingiz noto'g'ri kiritildi!", 'error');
+                    return;
+                }
+
+                if (newPass.length < 6) {
+                    showToast("Yangi parol kamida 6 ta belgidan iborat bo'lishi kerak!", 'error');
+                    return;
+                }
+
+                if (newPass !== confirmPass) {
+                    showToast("Yangi parollar bir-biriga mos kelmadi!", 'error');
+                    return;
+                }
+
+                // BAZADA HAM YANGILASH
+                let usersList = JSON.parse(localStorage.getItem('usersList')) || [];
+                usersList = usersList.map(u => {
+                    if (u.username === currentUsername) {
+                        u.password = newPass;
+                    }
+                    return u;
+                });
+                
+                localStorage.setItem('usersList', JSON.stringify(usersList));
+                localStorage.setItem('savedPassword', newPass);
+
+                showToast("Parolingiz muvaffaqiyatli yangilandi!");
+                document.getElementById('passwordForm').reset();
+            });
+
+            // --- Hamburger menyu ---
             const btn = document.getElementById('hamburgerBtn');
             const sidebar = document.getElementById('sidebar');
             const overlay = document.getElementById('sidebarOverlay');
@@ -220,33 +413,122 @@
                 sidebar.classList.toggle('-translate-x-full');
                 overlay.classList.toggle('hidden');
             }
+            if (btn) btn.addEventListener('click', toggleSidebar);
+            if (overlay) overlay.addEventListener('click', toggleSidebar);
 
-            btn.addEventListener('click', toggleSidebar);
-            overlay.addEventListener('click', toggleSidebar);
-
-            // Toggle-switch rangini boshqarish
+            // --- Toggle-switchlar ---
             const checkboxes = document.querySelectorAll('input[type="checkbox"]');
             checkboxes.forEach(box => {
                 const label = box.nextElementSibling;
-                
-                // Dastlabki holatni tekshirish
-                if(box.checked) {
-                    label.classList.remove('bg-slate-200');
-                    label.classList.add('bg-blue-600');
+                const settingId = box.id;
+
+                const savedStatus = localStorage.getItem(settingId);
+                if (savedStatus !== null) {
+                    box.checked = savedStatus === 'true';
                 }
 
-                // O'zgarganda rangni almashtirish
-                box.addEventListener('change', function() {
-                    if(this.checked) {
+                if (box.checked) {
+                    label.classList.remove('bg-slate-200');
+                    label.classList.add('bg-blue-600');
+                } else {
+                    label.classList.remove('bg-blue-600');
+                    label.classList.add('bg-slate-200');
+                }
+
+                box.addEventListener('change', function () {
+                    localStorage.setItem(settingId, this.checked);
+                    const name = this.getAttribute('data-name');
+
+                    if (this.checked) {
                         label.classList.remove('bg-slate-200');
                         label.classList.add('bg-blue-600');
+                        showToast(`${name} muvaffaqiyatli yoqildi!`);
                     } else {
                         label.classList.remove('bg-blue-600');
                         label.classList.add('bg-slate-200');
+                        showToast(`${name} o'chirildi.`, 'info');
                     }
                 });
+            });
+
+            // --- Mavzu (Theme) almashtirish ---
+            const themeSelect = document.getElementById('themeSelect');
+            const appBody = document.getElementById('appBody');
+            const mobileHeader = document.getElementById('mobileHeader');
+            const cards = document.querySelectorAll('.card');
+            const idTexts = document.querySelectorAll('.id-text');
+            const idTitles = document.querySelectorAll('.id-title');
+
+            function applyTheme(theme) {
+                if (theme === 'dark') {
+                    document.documentElement.classList.add('dark-mode-active');
+                    appBody.classList.remove('bg-slate-50', 'text-slate-800');
+                    appBody.classList.add('bg-slate-900', 'text-slate-100');
+                    sidebar.classList.remove('bg-white', 'border-gray-200');
+                    sidebar.classList.add('bg-slate-800', 'border-slate-700');
+                    if (mobileHeader) {
+                        mobileHeader.classList.remove('bg-white', 'border-gray-200');
+                        mobileHeader.classList.add('bg-slate-800', 'border-slate-700');
+                    }
+                    cards.forEach(card => {
+                        card.classList.remove('bg-white', 'border-slate-100');
+                        card.classList.add('bg-slate-800', 'border-slate-700');
+                    });
+                    idTexts.forEach(txt => {
+                        txt.classList.remove('text-slate-700', 'text-slate-800', 'text-gray-800', 'text-gray-900');
+                        txt.classList.add('text-slate-200');
+                    });
+                    idTitles.forEach(title => {
+                        title.classList.remove('text-slate-900');
+                        title.classList.add('text-white');
+                    });
+                    themeSelect.value = 'dark';
+                } else {
+                    document.documentElement.classList.remove('dark-mode-active');
+                    appBody.classList.remove('bg-slate-900', 'text-slate-100');
+                    appBody.classList.add('bg-slate-50', 'text-slate-800');
+                    sidebar.classList.remove('bg-slate-800', 'border-slate-700');
+                    sidebar.classList.add('bg-white', 'border-gray-200');
+                    if (mobileHeader) {
+                        mobileHeader.classList.remove('bg-slate-800', 'border-slate-700');
+                        mobileHeader.classList.add('bg-white', 'border-gray-200');
+                    }
+                    cards.forEach(card => {
+                        card.classList.remove('bg-slate-800', 'border-slate-700');
+                        card.classList.add('bg-white', 'border-slate-100');
+                    });
+                    idTexts.forEach(txt => {
+                        txt.classList.remove('text-slate-200');
+                        txt.classList.add('text-slate-700');
+                    });
+                    idTitles.forEach(title => {
+                        title.classList.remove('text-white');
+                        title.classList.add('text-slate-900');
+                    });
+                    themeSelect.value = 'light';
+                }
+            }
+
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            applyTheme(savedTheme);
+
+            themeSelect.addEventListener('change', function () {
+                localStorage.setItem('theme', this.value);
+                applyTheme(this.value);
+                showToast(`Mavzu muvaffaqiyatli o'zgartirildi!`);
+            });
+
+            // --- Til almashtirish ---
+            const languageSelect = document.getElementById('languageSelect');
+            const savedLang = localStorage.getItem('language') || 'uz';
+            languageSelect.value = savedLang;
+
+            languageSelect.addEventListener('change', function () {
+                localStorage.setItem('language', this.value);
+                showToast(`Til o'zgartirildi: ${this.value.toUpperCase()}`);
             });
         });
     </script>
 </body>
+
 </html>

@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sertifikat - Profil</title>
+    <title>Sertifikat - Profil va To'lov Jarayoni</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2 family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* Dark mode uchun tezkor fonalmashtirgich */
+.dark-mode-active body { background-color: #0f172a !important; color: #f1f5f9 !important; }
         body { font-family: 'Inter', sans-serif; }
     </style>
 </head>
@@ -72,14 +74,13 @@
         </nav>
 
         <div class="p-4 border-t border-gray-100">
-                <a href="bildirishnoma.html"
-                    class="flex items-center justify-between p-3 text-slate-600 hover:bg-slate-50 rounded-xl cursor-pointer transition-all">
-                    <div class="flex items-center gap-2 font-medium">
-                        <i class="fas fa-bell text-slate-400"></i> Bildirishnomalar
-                    </div>
-                    <span class="bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">3</span>
-                </a>
-            </div>
+            <a href="bildirishnoma.html" class="flex items-center justify-between p-3 text-slate-600 hover:bg-slate-50 rounded-xl cursor-pointer transition-all">
+                <div class="flex items-center gap-2 font-medium">
+                    <i class="fas fa-bell text-slate-400"></i> Bildirishnomalar
+                </div>
+                <span id="notificationBadge" class="bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">0</span>
+            </a>
+        </div>
     </aside>
 
     <main class="flex-1 p-4 lg:p-8 overflow-x-hidden">
@@ -91,13 +92,12 @@
             </header>
 
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                
                 <div class="space-y-6">
                     <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 text-center">
                         <div onclick="document.getElementById('fileInput').click()" 
                              class="group relative w-28 h-28 mx-auto mb-4 cursor-pointer">
                             <div id="avatarContainer" class="w-full h-full bg-blue-600 text-white rounded-full flex items-center justify-center text-3xl font-bold overflow-hidden border-4 border-white shadow-md transition group-hover:opacity-90">
-                                <span id="avatarText">U</span>
+                                <span id="avatarText">I</span>
                                 <img id="avatarImg" class="hidden w-full h-full object-cover" src="" alt="Avatar">
                             </div>
                             <div class="absolute bottom-0 right-0 bg-white p-2 rounded-full shadow-md text-slate-600 text-xs border border-slate-100 group-hover:scale-110 transition-transform">
@@ -107,7 +107,7 @@
                     
                         <input type="file" id="fileInput" class="hidden" accept="image/*" onchange="uploadImage(event)">
                         
-                        <h2 id="userName" class="text-xl font-bold text-slate-800 capitalize">Ulugbek</h2>
+                        <h2 id="userName" class="text-xl font-bold text-slate-800 capitalize">Isminggz</h2>
                         <p class="text-slate-400 mb-5 text-sm font-medium">O'quvchi</p>
                         
                         <button onclick="editName()" class="bg-blue-50 text-blue-600 px-5 py-2 rounded-xl font-semibold text-sm flex items-center gap-2 mx-auto hover:bg-blue-100 transition active:scale-95">
@@ -115,32 +115,31 @@
                         </button>
                     </div>
 
-                    <div class="relative overflow-hidden bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 p-6 rounded-2xl text-white shadow-xl group transition-all duration-300 hover:shadow-blue-200/50 hover:-translate-y-1">
-                        <div class="absolute -right-6 -top-6 w-24 h-24 bg-white/10 rounded-full blur-2xl group-hover:bg-white/20 transition-all"></div>
-                        <div class="absolute -left-10 -bottom-10 w-32 h-32 bg-blue-400/20 rounded-full blur-3xl"></div>
+                    <div class="relative overflow-hidden bg-gradient-to-br from-slate-700 via-slate-800 to-slate-950 p-6 rounded-2xl text-white shadow-xl group">
+                        <div class="absolute -right-6 -top-6 w-24 h-24 bg-white/5 rounded-full blur-2xl"></div>
                     
                         <div class="relative z-10">
                             <div class="flex items-center justify-between mb-4">
                                 <div class="flex items-center gap-2">
-                                    <div class="bg-yellow-400 p-1.5 rounded-lg shadow-lg shadow-yellow-500/50 animate-pulse">
-                                        <i class="fas fa-crown text-blue-900 text-xs"></i>
+                                    <div class="bg-slate-600 p-1.5 rounded-lg text-slate-300">
+                                        <i class="fas fa-crown text-xs"></i>
                                     </div>
-                                    <span class="font-bold tracking-wide uppercase text-xs">Premium Plan</span>
+                                    <span class="font-bold tracking-wide uppercase text-xs text-slate-300">Sertifikat Obuna</span>
                                 </div>
-                                <span class="text-[10px] bg-emerald-500/30 text-emerald-300 px-2 py-0.5 rounded-full border border-emerald-500/30 font-bold">Aktiv</span>
+                                <span id="statusBadge" class="text-[10px] bg-red-500/20 text-red-400 px-2 py-0.5 rounded-full border border-red-500/30 font-bold">Aktiv emas</span>
                             </div>
                     
-                            <h3 class="text-lg font-bold mb-1">Cheksiz Imkoniyatlar</h3>
-                            <p class="text-blue-100 text-xs mb-6 opacity-80">Barcha premium testlar va yopiq video darslar siz uchun ochiq.</p>
+                            <h3 class="text-lg font-bold mb-1">To'liq kirish huquqi</h3>
+                            <p class="text-slate-300 text-xs mb-6 opacity-80">Sertifikat platformasidagi barcha premium testlar va xizmatlardan cheksiz foydalaning.</p>
                     
                             <div class="flex justify-between items-end border-t border-white/10 pt-4">
                                 <div>
-                                    <p class="text-[10px] uppercase opacity-60 mb-0.5">Amal qilish muddati</p>
-                                    <p id="premiumExpiry" class="font-mono font-bold text-sm">01.09.2026</p>
+                                    <p class="text-[10px] uppercase opacity-60 mb-0.5">Status</p>
+                                    <p id="statusText" class="font-bold text-sm text-red-400">Obuna  mavjud emas</p>
                                 </div>
-                                <button class="bg-white/20 hover:bg-white/30 p-2 rounded-lg transition-colors">
-                                    <i class="fas fa-arrow-right text-xs"></i>
-                                </button>
+                                <a href="#premium-tarifs" class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold px-3 py-1.5 rounded-lg transition-colors">
+                                    Tariflar
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -152,25 +151,25 @@
                             <span>🏆</span> Erishilgan yutuqlar
                         </h3>
                         <div id="achievements" class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                            <div class="bg-slate-50 p-4 rounded-xl text-center border border-slate-100 hover:border-blue-100 transition-colors">
+                            <div class="bg-slate-50 p-4 rounded-xl text-center border border-slate-100 opacity-40">
                                 <div class="text-2xl mb-1">🔥</div>
                                 <h4 class="font-bold text-xs text-slate-700">7 Kunlik Shijoat</h4>
-                                <p class="text-[10px] text-slate-400 mt-0.5">Ketma-ket faollik</p>
+                                <p class="text-[10px] text-slate-400 mt-0.5">Nol holatda</p>
                             </div>
-                            <div class="bg-slate-50 p-4 rounded-xl text-center border border-slate-100 hover:border-blue-100 transition-colors">
+                            <div class="bg-slate-50 p-4 rounded-xl text-center border border-slate-100 opacity-40">
                                 <div class="text-2xl mb-1">🎯</div>
                                 <h4 class="font-bold text-xs text-slate-700">A'lo Natija</h4>
-                                <p class="text-[10px] text-slate-400 mt-0.5">Mockdan 90%+ ball</p>
+                                <p class="text-[10px] text-slate-400 mt-0.5">Nol holatda</p>
                             </div>
-                            <div class="bg-slate-50 p-4 rounded-xl text-center border border-slate-100 hover:border-blue-100 transition-colors opacity-50">
+                            <div class="bg-slate-50 p-4 rounded-xl text-center border border-slate-100 opacity-40">
                                 <div class="text-2xl mb-1">📚</div>
                                 <h4 class="font-bold text-xs text-slate-700">Bilimdon</h4>
-                                <p class="text-[10px] text-slate-400 mt-0.5">50 ta test yechish</p>
+                                <p class="text-[10px] text-slate-400 mt-0.5">Nol holatda</p>
                             </div>
-                            <div class="bg-slate-50 p-4 rounded-xl text-center border border-slate-100 hover:border-blue-100 transition-colors opacity-50">
+                            <div class="bg-slate-50 p-4 rounded-xl text-center border border-slate-100 opacity-40">
                                 <div class="text-2xl mb-1">👑</div>
                                 <h4 class="font-bold text-xs text-slate-700">Chempion</h4>
-                                <p class="text-[10px] text-slate-400 mt-0.5">Reytingda top-3</p>
+                                <p class="text-[10px] text-slate-400 mt-0.5">Nol holatda</p>
                             </div>
                         </div>
                     </div>
@@ -180,25 +179,9 @@
                             <span>⏱️</span> So'nggi faoliyat tarixi
                         </h3>
                         <div id="activityList" class="space-y-3">
-                            <div class="flex items-center justify-between p-3 bg-slate-50 rounded-xl text-sm">
-                                <div class="flex items-center gap-3">
-                                    <span class="p-2 bg-blue-50 text-blue-600 rounded-lg text-xs"><i class="fas fa-file-alt"></i></span>
-                                    <div>
-                                        <p class="font-semibold text-slate-700">Matematika Mock Imtihon topshirildi</p>
-                                        <p class="text-[11px] text-slate-400">Bugun, 14:20</p>
-                                    </div>
-                                </div>
-                                <span class="font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-lg text-xs">+85 ball</span>
-                            </div>
-                            <div class="flex items-center justify-between p-3 bg-slate-50 rounded-xl text-sm">
-                                <div class="flex items-center gap-3">
-                                    <span class="p-2 bg-purple-50 text-purple-600 rounded-lg text-xs"><i class="fas fa-play"></i></span>
-                                    <div>
-                                        <p class="font-semibold text-slate-700">"Ingliz tili - Tenses" videosi ko'rildi</p>
-                                        <p class="text-[11px] text-slate-400">Kecha, 18:05</p>
-                                    </div>
-                                </div>
-                                <span class="text-slate-400 text-xs">15 daq</span>
+                            <div class="text-center py-4 text-sm text-slate-400 font-medium">
+                                <i class="fas fa-clock-rotate-left block text-xl mb-1 text-slate-300"></i>
+                                Hozircha faoliyat tarixi mavjud emas.
                             </div>
                         </div>
                     </div>
@@ -208,45 +191,216 @@
                             <h3 class="font-bold text-slate-800 flex items-center gap-2">
                                 <span>📈</span> Haftalik maqsad darajasi
                             </h3>
-                            <span class="text-sm font-bold text-blue-600">75%</span>
+                            <span class="text-sm font-bold text-blue-600">0%</span>
                         </div>
                         <div class="space-y-3">
                             <div class="w-full bg-slate-100 h-3 rounded-full overflow-hidden">
-                                <div class="bg-blue-600 h-full rounded-full transition-all duration-500" style="width: 75%"></div>
+                                <div class="bg-blue-600 h-full rounded-full transition-all duration-500" style="width: 0%"></div>
                             </div>
-                            <p class="text-xs text-slate-400 font-medium">Haftalik rejangizni yakunlash uchun yana 2 ta test yechishingiz kerak.</p>
+                            <p class="text-xs text-slate-400 font-medium">Haftalik rejangizni boshlash uchun birinchi testni yeching.</p>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <div id="premium-tarifs" class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 mt-8">
+                <div class="mb-6">
+                    <h3 class="text-xl font-bold text-slate-800 flex items-center gap-2">
+                        <span>💎</span> Obuna paketlari
+                    </h3>
+                    <p class="text-slate-500 text-sm mt-1">Sertifikat tizimi bo'yicha o'zingizga ma'qul bo'lgan obuna muddatini tanlang</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div class="bg-slate-50 border border-slate-100 p-5 rounded-xl text-center flex flex-col justify-between hover:border-blue-500 transition-colors">
+                        <div>
+                            <h4 class="font-bold text-slate-700 text-base mb-2">1 Oylik Obuna</h4>
+                            <p class="text-[11px] text-slate-400 font-medium mb-4">Sinov va qisqa muddatli tayyorgarlik uchun</p>
+                        </div>
+                        <div>
+                            <div class="mb-4">
+                                <span class="text-2xl font-extrabold text-slate-800">50,000</span>
+                                <span class="text-xs text-slate-500 font-medium">so'm</span>
+                            </div>
+                            <button onclick="openPaymentModal('1 Oylik Obuna', 50000)" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 rounded-lg text-xs transition">Sotib olish</button>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-50 border border-slate-100 p-5 rounded-xl text-center flex flex-col justify-between hover:border-blue-500 transition-colors relative overflow-hidden">
+                        <div class="absolute top-2 right-2 bg-red-500 text-white text-[9px] font-bold px-1.5 py-0.5 rounded">Aksiya</div>
+                        <div>
+                            <h4 class="font-bold text-slate-700 text-base mb-2">3 Oylik Obuna</h4>
+                            <p class="text-[11px] text-slate-400 font-medium mb-4">Eng ommabop va samarali muddat</p>
+                        </div>
+                        <div>
+                            <div class="mb-4">
+                                <span class="text-xs text-slate-400 line-through font-medium block">150,000 so'm</span>
+                                <span class="text-2xl font-extrabold text-slate-800">140,000</span>
+                                <span class="text-xs text-slate-500 font-medium">so'm</span>
+                            </div>
+                            <button onclick="openPaymentModal('3 Oylik Obuna', 140000)" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 rounded-lg text-xs transition">Sotib olish</button>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-50 border border-slate-100 p-5 rounded-xl text-center flex flex-col justify-between hover:border-blue-500 transition-colors relative overflow-hidden">
+                        <div class="absolute top-2 right-2 bg-red-500 text-white text-[9px] font-bold px-1.5 py-0.5 rounded">Chegirma</div>
+                        <div>
+                            <h4 class="font-bold text-slate-700 text-base mb-2">6 Oylik Obuna</h4>
+                            <p class="text-[11px] text-slate-400 font-medium mb-4">Yarim yillik mukammal reja</p>
+                        </div>
+                        <div>
+                            <div class="mb-4">
+                                <span class="text-xs text-slate-400 line-through font-medium block">300,000 so'm</span>
+                                <span class="text-2xl font-extrabold text-slate-800">275,000</span>
+                                <span class="text-xs text-slate-500 font-medium">so'm</span>
+                            </div>
+                            <button onclick="openPaymentModal('6 Oylik Obuna', 275000)" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 rounded-lg text-xs transition">Sotib olish</button>
+                        </div>
+                    </div>
+
+                    <div class="bg-gradient-to-b from-blue-600 to-indigo-700 p-5 rounded-xl text-center flex flex-col justify-between text-white shadow-md relative overflow-hidden">
+                        <div class="absolute top-2 right-2 bg-yellow-400 text-blue-900 text-[9px] font-extrabold px-1.5 py-0.5 rounded uppercase tracking-wider">Eng zo'r narx</div>
+                        <div>
+                            <h4 class="font-bold text-base mb-2">1 Yillik Obuna</h4>
+                            <p class="text-[11px] text-blue-100 opacity-80 font-medium mb-4">Uzoq muddatli va eng tejamkor tanlov</p>
+                        </div>
+                        <div>
+                            <div class="mb-4">
+                                <span class="text-xs text-blue-200 line-through font-medium block opacity-75">600,000 so'm</span>
+                                <span class="text-2xl font-extrabold text-white">550,000</span>
+                                <span class="text-xs text-blue-100 font-medium">so'm</span>
+                            </div>
+                            <button onclick="openPaymentModal('1 Yillik Obuna', 550000)" class="w-full bg-white text-blue-600 hover:bg-blue-50 font-bold py-2 rounded-lg text-xs transition shadow-sm">Sotib olish</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </main>
 
+    <div id="paymentModal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-100 transition-all duration-300">
+            
+            <div class="flex justify-between items-center mb-4 border-b border-slate-100 pb-3">
+                <h3 class="text-base font-bold text-slate-800" id="modalPlanTitle">To'lov tizimi</h3>
+                <button onclick="closePaymentModal()" class="text-slate-400 hover:text-slate-600 p-1 rounded-lg">
+                    <i class="fas fa-times text-lg"></i>
+                </button>
+            </div>
+
+            <div id="step-choose" class="block space-y-4">
+                <div class="bg-slate-50 p-3 rounded-xl flex items-center justify-between text-xs border border-slate-100">
+                    <span class="font-medium text-slate-600">Siz tanlagan paket narxi:</span>
+                    <span id="modalPlanPrice" class="font-bold text-blue-600 text-sm">0 so'm</span>
+                </div>
+                <p class="text-xs text-slate-500 font-medium">Iltimos, o'zingizga qulay to'lov usulini tanlang:</p>
+                <div class="space-y-2.5">
+                    <button onclick="goToCardInput('Payme')" class="w-full bg-white hover:bg-slate-50 text-slate-800 font-medium py-3 px-4 rounded-xl border border-slate-200 flex items-center justify-between transition shadow-sm">
+                        <span class="flex items-center gap-3">
+                            <span class="text-cyan-500 font-black tracking-tighter text-lg">Pay<span class="bg-cyan-500 text-white px-1 py-0.5 rounded ml-0.5 text-sm">me</span></span>
+                            <span class="text-sm font-medium text-slate-700">Payme orqali to'lash</span>
+                        </span>
+                        <i class="fas fa-chevron-right text-xs opacity-40"></i>
+                    </button>
+                    <button onclick="goToCardInput('Click')" class="w-full bg-white hover:bg-slate-50 text-slate-800 font-medium py-3 px-4 rounded-xl border border-slate-200 flex items-center justify-between transition shadow-sm">
+                        <span class="flex items-center gap-3">
+                            <span class="text-blue-600 font-black tracking-tight text-lg flex items-center gap-1">
+                                <i class="fas fa-dot-circle text-cyan-400 text-sm"></i>CLICK
+                            </span>
+                            <span class="text-sm font-medium text-slate-700">Click orqali to'lash</span>
+                        </span>
+                        <i class="fas fa-chevron-right text-xs opacity-40"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div id="step-card" class="hidden space-y-4">
+                <div class="flex items-center gap-2 text-sm font-medium text-slate-700 mb-2">
+                    <button onclick="backToChoose()" class="text-slate-400 hover:text-slate-600 mr-1"><i class="fas fa-arrow-left"></i></button>
+                    <span id="selectedProviderName" class="font-bold">Payme</span> oyna simulyatsiyasi
+                </div>
+                <div class="space-y-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-500 mb-1">Karta raqami</label>
+                        <input type="text" id="cardNumber" placeholder="8600 0000 0000 0000" maxlength="19" oninput="formatCardNumber(this)" class="w-full px-3 py-2.5 border border-slate-200 rounded-xl font-mono text-sm focus:outline-none focus:border-blue-500">
+                    </div>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-500 mb-1">Amal qilish muddati</label>
+                            <input type="text" id="cardExpiry" placeholder="MM/YY" maxlength="5" oninput="formatExpiry(this)" class="w-full px-3 py-2.5 border border-slate-200 rounded-xl font-mono text-sm text-center focus:outline-none focus:border-blue-500">
+                        </div>
+                        <div class="flex items-end">
+                            <button onclick="processToSms()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 rounded-xl text-xs transition shadow-sm">Davom etish</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="step-sms" class="hidden space-y-4">
+                <div class="text-center space-y-2">
+                    <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center text-xl mx-auto">
+                        <i class="fas fa-comment-sms"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-800 text-sm">SMS kod yuborildi</h4>
+                    <p class="text-xs text-slate-400 max-w-xs mx-auto">Karta ulangan telefon raqamiga yuborilgan 4 xonali tasdiqlash kodini kiriting (Test uchun: <span class="font-bold text-slate-700">1111</span>)</p>
+                </div>
+                <div class="max-w-[160px] mx-auto">
+                    <input type="text" id="smsCode" placeholder="0000" maxlength="4" class="w-full px-3 py-3 border border-slate-200 rounded-xl font-mono text-xl tracking-[0.5em] text-center focus:outline-none focus:border-blue-500">
+                </div>
+                <button onclick="verifySmsCode()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-xl text-xs transition shadow-sm">Kodni tasdiqlash</button>
+            </div>
+
+            <div id="step-success" class="hidden text-center space-y-4 py-4">
+                <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-3xl mx-auto animate-bounce">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div>
+                    <h4 class="font-extrabold text-slate-900 text-lg">To'lov muvaffaqiyatli yakunlandi!</h4>
+                    <p class="text-xs text-slate-500 mt-1">Sizning premium hisobingiz muvaffaqiyatli faollashtirildi.</p>
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 text-xs text-left space-y-1">
+                    <div class="flex justify-between"><span class="text-slate-400">Xizmat:</span> <span id="receiptPlan" class="font-semibold text-slate-800">1 Oylik Obuna</span></div>
+                    <div class="flex justify-between"><span class="text-slate-400">To'lov usuli:</span> <span id="receiptProvider" class="font-semibold text-slate-800">Payme</span></div>
+                    <div class="flex justify-between"><span class="text-slate-400">Yechilgan summa:</span> <span id="receiptPrice" class="font-bold text-green-600">50,000 so'm</span></div>
+                </div>
+                <button onclick="finishPaymentProcess()" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-2.5 rounded-xl text-xs transition">Profilga qaytish</button>
+            </div>
+
+            <p id="modalFooterText" class="text-[11px] text-center text-slate-500 mt-5 leading-relaxed block">
+                To'lov jarayoni xavfsiz ssl shifrlash orqali amalga oshirilmoqda. To'lovni davom ettirish bilan shartnomaga rozilik bildirasiz.
+            </p>
+        </div>
+    </div>
+
     <script>
-        function editName() {
-            const currentName = document.getElementById('userName').innerText;
-            const newName = prompt("Yangi ismingizni kiriting:", currentName);
-            if (newName && newName.trim() !== "") {
-                document.getElementById('userName').innerText = newName;
-                document.getElementById('avatarText').innerText = newName.charAt(0).toUpperCase();
-            }
-        }
+        let selectedPlan = '';
+        let selectedPrice = 0;
+        let currentProvider = '';
 
-        function uploadImage(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    document.getElementById('avatarImg').src = e.target.result;
-                    document.getElementById('avatarImg').classList.remove('hidden');
-                    document.getElementById('avatarText').classList.add('hidden');
-                }
-                reader.readAsDataURL(file);
-            }
-        }
-
-        // Mobil menyu boshqaruvi
         document.addEventListener('DOMContentLoaded', function() {
+            const savedName = localStorage.getItem('profile_name');
+            if (savedName) {
+                document.getElementById('userName').innerText = savedName;
+                document.getElementById('avatarText').innerText = savedName.charAt(0).toUpperCase();
+            } else {
+                document.getElementById('userName').innerText = "Isminggz";
+                document.getElementById('avatarText').innerText = "I";
+            }
+
+            const savedAvatar = localStorage.getItem('profile_avatar');
+            if (savedAvatar) {
+                const img = document.getElementById('avatarImg');
+                img.src = savedAvatar;
+                img.classList.remove('hidden');
+                document.getElementById('avatarText').classList.add('hidden');
+            }
+
+            // Check if subscription was already active
+            if(localStorage.getItem('premium_active') === 'true') {
+                activatePremiumUI(localStorage.getItem('premium_plan'));
+            }
+
             const btn = document.getElementById('hamburgerBtn');
             const sidebar = document.getElementById('sidebar');
             const overlay = document.getElementById('sidebarOverlay');
@@ -256,9 +410,187 @@
                 overlay.classList.toggle('hidden');
             }
 
-            btn.addEventListener('click', toggleSidebar);
-            overlay.addEventListener('click', toggleSidebar);
+            btn?.addEventListener('click', toggleSidebar);
+            overlay?.addEventListener('click', toggleSidebar);
         });
+
+        function editName() {
+            const currentName = document.getElementById('userName').innerText;
+            const newName = prompt("Yangi ismingizni kiriting:", currentName);
+            if (newName && newName.trim() !== "") {
+                const trimmedName = newName.trim();
+                document.getElementById('userName').innerText = trimmedName;
+                document.getElementById('avatarText').innerText = trimmedName.charAt(0).toUpperCase();
+                localStorage.setItem('profile_name', trimmedName);
+            }
+        }
+
+        function uploadImage(event) {
+            const file = event.target.files[0];
+            if (file) {
+                if (file.size > 2 * 1024 * 1024) {
+                    alert("Rasm hajmi juda katta! Iltimos, 2MB dan kichik rasm yuklang.");
+                    return;
+                }
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const base64Image = e.target.result;
+                    document.getElementById('avatarImg').src = base64Image;
+                    document.getElementById('avatarImg').classList.remove('hidden');
+                    document.getElementById('avatarText').classList.add('hidden');
+                    try {
+                        localStorage.setItem('profile_avatar', base64Image);
+                    } catch (error) {
+                        console.warn("Xotira cheklovi sababli rasm saqlanmadi.");
+                    }
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
+        /* --- TO'LOV SCRIPT MATRIX JARAYONI --- */
+
+        function openPaymentModal(planName, price) {
+            selectedPlan = planName;
+            selectedPrice = price;
+
+            document.getElementById('modalPlanTitle').innerText = planName + " - To'lov";
+            document.getElementById('modalPlanPrice').innerText = price.toLocaleString() + " so'm";
+            
+            // Har safar ochilganda 1-bosqichdan boshlanishi kafolatlanadi
+            resetModalSteps();
+
+            document.getElementById('paymentModal').classList.remove('hidden');
+        }
+
+        function closePaymentModal() {
+            document.getElementById('paymentModal').classList.add('hidden');
+        }
+
+        function resetModalSteps() {
+            document.getElementById('step-choose').classList.remove('hidden');
+            document.getElementById('step-card').classList.add('hidden');
+            document.getElementById('step-sms').classList.add('hidden');
+            document.getElementById('step-success').classList.add('hidden');
+            document.getElementById('modalFooterText').classList.remove('hidden');
+            
+            // Inputlarni tozalash
+            document.getElementById('cardNumber').value = '';
+            document.getElementById('cardExpiry').value = '';
+            document.getElementById('smsCode').value = '';
+        }
+
+        // Usul tanlangandan so'ng karta kiritish oynasiga o'tish
+        function goToCardInput(provider) {
+            currentProvider = provider;
+            document.getElementById('selectedProviderName').innerText = provider;
+            
+            document.getElementById('step-choose').classList.add('hidden');
+            document.getElementById('step-card').classList.remove('hidden');
+        }
+
+        function backToChoose() {
+            document.getElementById('step-card').classList.add('hidden');
+            document.getElementById('step-choose').classList.remove('hidden');
+        }
+
+        // Plastik karta raqamini chiroyli formatlash (4 tadan ajratish)
+        function formatCardNumber(input) {
+            let v = input.value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+            let matches = v.match(/\d{4,16}/g);
+            let match = matches && matches[0] || '';
+            let parts = [];
+
+            for (let i=0, len=match.length; i<len; i+=4) {
+                parts.push(match.substring(i, i+4));
+            }
+
+            if (parts.length > 0) {
+                input.value = parts.join(' ');
+            } else {
+                input.value = v;
+            }
+        }
+
+        // Karta muddatini formatlash (12/28 kabi)
+        function formatExpiry(input) {
+            let v = input.value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+            if (v.length >= 2) {
+                input.value = v.substring(0,2) + '/' + v.substring(2,4);
+            } else {
+                input.value = v;
+            }
+        }
+
+        // SMS kod sahifasiga o'tish
+        function processToSms() {
+            const cardNum = document.getElementById('cardNumber').value.replace(/\s/g, '');
+            const cardExp = document.getElementById('cardExpiry').value;
+
+            if(cardNum.length < 16) {
+                alert("Iltimos, 16 xonali karta raqamini to'liq kiriting.");
+                return;
+            }
+            if(cardExp.length < 5) {
+                alert("Karta amal qilish muddatini to'g'ri kiriting (MM/YY).");
+                return;
+            }
+
+            document.getElementById('step-card').classList.add('hidden');
+            document.getElementById('step-sms').classList.remove('hidden');
+        }
+
+        // Kodni tekshirish va muvaffaqiyatli yakunlash
+        function verifySmsCode() {
+            const code = document.getElementById('smsCode').value;
+            if(code !== "1111") {
+                alert("Tasdiqlash kodi xato! (Test rejimi uchun kod: 1111)");
+                return;
+            }
+
+            // Kvitansiya ma'lumotlarini to'ldirish
+            document.getElementById('receiptPlan').innerText = selectedPlan;
+            document.getElementById('receiptProvider').innerText = currentProvider;
+            document.getElementById('receiptPrice').innerText = selectedPrice.toLocaleString() + " so'm";
+
+            // UI o'zgarishi
+            document.getElementById('step-sms').classList.add('hidden');
+            document.getElementById('modalFooterText').classList.add('hidden');
+            document.getElementById('step-success').classList.remove('hidden');
+
+            // Ma'lumotlarni saqlash (Profil yangilanishi uchun)
+            localStorage.setItem('premium_active', 'true');
+            localStorage.setItem('premium_plan', selectedPlan);
+        }
+
+        // Jarayon tugagach profil interfeysini o'zgartirish
+        function finishPaymentProcess() {
+            closePaymentModal();
+            activatePremiumUI(selectedPlan);
+            
+            // Bildirishnomalarga xabar qo'shish
+            document.getElementById('notificationBadge').innerText = "1";
+            alert("Tabriklaymiz! Hisobingiz aktivlashdi.");
+        }
+
+        function activatePremiumUI(planName) {
+            const badge = document.getElementById('statusBadge');
+            const text = document.getElementById('statusText');
+
+            if(badge && text) {
+                badge.innerText = "Aktiv";
+                badge.className = "text-[10px] bg-green-500/20 text-green-400 px-2 py-0.5 rounded-full border border-green-500/30 font-bold";
+                text.innerText = planName + " faol";
+                text.className = "font-bold text-sm text-green-400";
+            }
+        }
+        // Sahifa yuklanishidan oldin xotirani tekshirish
+        (function () {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark-mode-active');
+            }
+        })();
     </script>
 </body>
 </html>

@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        .dark-mode-active body { background-color: #0f172a !important; color: #f1f5f9 !important; }
         body { font-family: 'Inter', sans-serif; }
     </style>
 </head>
@@ -70,108 +71,257 @@
                 <i class="fas fa-cog w-5 text-center text-lg text-slate-400"></i> Sozlamalar
             </a>
         </nav>
-
-        <div class="p-4 border-t border-gray-100">
-                <a href="bildirishnoma.html"
-                    class="flex items-center justify-between p-3 text-slate-600 hover:bg-slate-50 rounded-xl cursor-pointer transition-all">
-                    <div class="flex items-center gap-2 font-medium">
-                        <i class="fas fa-bell text-slate-400"></i> Bildirishnomalar
-                    </div>
-                    <span class="bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">3</span>
-                </a>
-            </div>
     </aside>
 
     <main class="flex-1 p-4 lg:p-8 overflow-x-hidden">
-        <div class="max-w-4xl mx-auto">
+        <div class="max-w-4xl mx-auto" id="mainContent">
             
             <header class="mb-8">
                 <h2 class="text-2xl lg:text-3xl font-bold text-slate-900">Mock Imtihonlar</h2>
-                <p class="text-slate-500 mt-1">Haqiqiy imtihon sharoitida o'zingizni sinab ko'ring va bilimingizni baholang</p>
+                <p class="text-slate-500 mt-1">Har bir fan bo'yicha maxsus 10 talik testlar jamlanmasi</p>
             </header>
 
             <div class="space-y-4">
-                
                 <div class="bg-white p-5 lg:p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                     <div>
-                        <h3 class="text-lg font-bold text-slate-800 mb-2">To'liq Mock Imtihon #1</h3>
+                        <h3 class="text-lg font-bold text-slate-800 mb-2">Matematika Mock Imtihon</h3>
                         <div class="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-slate-500">
-                            <span class="flex items-center gap-2 text-blue-600 font-medium"><i class="far fa-check-circle"></i> Barcha fanlar</span>
-                            <span class="flex items-center gap-2"><i class="far fa-list-alt"></i> 90 savol</span>
-                            <span class="flex items-center gap-2"><i class="far fa-clock"></i> 180 daqiqa</span>
+                            <span class="flex items-center gap-2 text-emerald-600 font-medium"><i class="fas fa-calculator"></i> Matematika</span>
+                            <span class="flex items-center gap-2"><i class="far fa-list-alt"></i> 10 savol</span>
+                            <span class="flex items-center gap-2"><i class="far fa-clock"></i> 20 daqiqa</span>
                         </div>
                     </div>
-                    <div class="flex items-center gap-3 sm:self-start md:self-auto">
-                        <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-xl font-medium transition shadow-sm text-sm">Boshlash</button>
-                        <button class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-5 py-2.5 rounded-xl font-medium transition text-sm">Natijalar</button>
-                    </div>
-                </div>
-
-                <div class="bg-white p-5 lg:p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                    <div>
-                        <h3 class="text-lg font-bold text-slate-800 mb-2">Ona tili Mock</h3>
-                        <div class="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-slate-500">
-                            <span class="flex items-center gap-2 text-blue-600 font-medium"><i class="far fa-check-circle"></i> Ona tili</span>
-                            <span class="flex items-center gap-2"><i class="far fa-list-alt"></i> 30 savol</span>
-                            <span class="flex items-center gap-2"><i class="far fa-clock"></i> 45 daqiqa</span>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-3 sm:self-start md:self-auto">
-                        <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-xl font-medium transition shadow-sm text-sm">Boshlash</button>
-                        <button class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-5 py-2.5 rounded-xl font-medium transition text-sm">Natijalar</button>
+                    <div class="flex items-center gap-3">
+                        <button id="btn_start_matematika" onclick="startExam('matematika', 'Matematika Mock Imtihon', 20)" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-xl font-medium transition shadow-sm text-sm">Boshlash</button>
+                        <button onclick="showResultsMock('matematika')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-5 py-2.5 rounded-xl font-medium transition text-sm">Natijalar</button>
                     </div>
                 </div>
 
                 <div class="bg-white p-5 lg:p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                     <div>
-                        <h3 class="text-lg font-bold text-slate-800 mb-2">Matematika Mock</h3>
+                        <h3 class="text-lg font-bold text-slate-800 mb-2">Ona tili va Adabiyot Mock</h3>
                         <div class="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-slate-500">
-                            <span class="flex items-center gap-2 text-blue-600 font-medium"><i class="far fa-check-circle"></i> Matematika</span>
-                            <span class="flex items-center gap-2"><i class="far fa-list-alt"></i> 30 savol</span>
-                            <span class="flex items-center gap-2"><i class="far fa-clock"></i> 60 daqiqa</span>
+                            <span class="flex items-center gap-2 text-blue-600 font-medium"><i class="fas fa-language"></i> Ona tili</span>
+                            <span class="flex items-center gap-2"><i class="far fa-list-alt"></i> 10 savol</span>
+                            <span class="flex items-center gap-2"><i class="far fa-clock"></i> 15 daqiqa</span>
                         </div>
                     </div>
-                    <div class="flex items-center gap-3 sm:self-start md:self-auto">
-                        <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-xl font-medium transition shadow-sm text-sm">Boshlash</button>
-                        <button class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-5 py-2.5 rounded-xl font-medium transition text-sm">Natijalar</button>
+                    <div class="flex items-center gap-3">
+                        <button id="btn_start_onatili" onclick="startExam('onatili', 'Ona tili va Adabiyot Mock', 15)" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-xl font-medium transition shadow-sm text-sm">Boshlash</button>
+                        <button onclick="showResultsMock('onatili')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-5 py-2.5 rounded-xl font-medium transition text-sm">Natijalar</button>
                     </div>
                 </div>
-
-                <div class="bg-blue-50/60 border border-blue-100 p-6 rounded-2xl mt-8">
-                    <h4 class="font-bold text-blue-900 mb-4 flex items-center gap-2">
-                        <i class="fas fa-info-circle"></i> Mock imtihon haqida eslatma
-                    </h4>
-                    <ul class="space-y-3 text-blue-800 text-sm font-medium">
-                        <li class="flex items-start gap-3">
-                            <i class="fas fa-check-double text-blue-600 mt-0.5"></i> <span>Haqiqiy imtihon sharoitidagi qat'iy vaqt cheklovi amal qiladi.</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fas fa-check-double text-blue-600 mt-0.5"></i> <span>Savollar joriy davlat ta'lim standartlari asosida tuzilgan.</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fas fa-check-double text-blue-600 mt-0.5"></i> <span>Imtihon yakunida xatolar ustida ishlash uchun batafsil tahlil taqdim etiladi.</span>
-                        </li>
-                    </ul>
-                </div>
-
             </div>
+        </div>
+
+        <div class="max-w-3xl mx-auto hidden bg-white p-6 rounded-2xl border border-slate-200 shadow-sm" id="examSection">
+            <div class="flex justify-between items-center border-b border-slate-100 pb-4 mb-6">
+                <div>
+                    <h3 class="text-xl font-bold text-slate-900" id="examTitleDisplay">Imtihon</h3>
+                    <p class="text-xs text-slate-500 mt-0.5">Barcha 10 ta savolga javob bering</p>
+                </div>
+                <div class="bg-amber-50 border border-amber-200 px-4 py-2 rounded-xl text-amber-700 font-bold flex items-center gap-2 text-sm">
+                    <i class="far fa-clock text-base"></i> <span id="timerDisplay">00:00</span>
+                </div>
+            </div>
+            <div id="questionsContainer" class="space-y-6"></div>
+            <div class="mt-8 pt-4 border-t border-slate-100 flex justify-end">
+                <button onclick="finishExam()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-medium px-6 py-3 rounded-xl transition shadow-md shadow-emerald-100 text-sm">
+                    Imtihonni yakunlash
+                </button>
+            </div>
+        </div>
+
+        <div class="max-w-md mx-auto hidden bg-white p-6 rounded-2xl border border-slate-200 shadow-lg text-center" id="resultSection">
+            <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-2xl mx-auto mb-4">
+                <i class="fas fa-trophy"></i>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-1">Imtihon Yakunlandi!</h3>
+            <p class="text-sm text-slate-500 mb-6" id="resultExamName">Mock Imtihon</p>
+            <div class="bg-slate-50 p-4 rounded-xl space-y-3 mb-6 font-medium text-sm text-slate-600">
+                <div class="flex justify-between"><span>Umumiy savollar:</span> <span class="font-bold text-slate-900" id="resTotal">10 ta</span></div>
+                <div class="flex justify-between"><span>To'g'ri javoblar:</span> <span class="font-bold text-emerald-600" id="resCorrect">0 ta</span></div>
+                <div class="flex justify-between"><span>Foiz ko'rsatkichi:</span> <span class="font-bold text-blue-600" id="resPercent">0%</span></div>
+            </div>
+            <button onclick="backToList()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 rounded-xl transition text-sm">
+                Ro'yxatga qaytish
+            </button>
         </div>
     </main>
 
     <script>
+        // Har bir fan uchun alohida 10 tadan professional unikal savollar jamlanmasi
+        const examsDatabase = {
+            matematika: [
+                { q: "1. Quyidagi tenglamani yeching: 3x + 12 = 27", a: ["x = 5", "x = 4", "x = 6", "x = 3"], c: 0 },
+                { q: "2. Hisoblang: 15% ning 200 ga ko'paytmasi qancha?", a: ["20", "25", "30", "35"], c: 2 },
+                { q: "3. Kvadratning perimetri 36 sm. Uning yuzini toping.", a: ["81 sm²", "36 sm²", "64 sm²", "100 sm²"], c: 0 },
+                { q: "4. Ketma-ketlikni davom ettiring: 2, 4, 8, 16, ...", a: ["20", "32", "24", "64"], c: 1 },
+                { q: "5. Uchburchakning ichki burchaklari yig'indisi nechaga teng?", a: "180°", a: ["90°", "360°", "180°", "270°"], c: 2 },
+                { q: "6. Agar a = 5 va b = 4 bo'lsa, a² - b² qiymatini toping.", a: ["9", "1", "25", "16"], c: 0 },
+                { q: "7. Eng kichik tub sonni ko'rsating.", a: ["1", "2", "3", "0"], c: 1 },
+                { q: "8. Kasrni hisoblang: 3/4 + 1/2", a: ["4/6", "5/4", "1/4", "7/4"], c: 1 },
+                { q: "9. 120 sonining tub ko'paytuvchilari soni nechta?", a: ["3 ta", "4 ta", "5 ta", "2 ta"], c: 0 },
+                { q: "10. Tengsizlikni yeching: 2x > 10", a: ["x > 5", "x < 5", "x = 5", "x > 2"], c: 0 }
+            ],
+            onatili: [
+                { q: "1. 'Sertifikat' so'zining to'g'ri imlosi qaysi javobda berilgan?", a: ["Sertifikat", "Sirtifikat", "Sertifkat", "Sertifikad"], c: 0 },
+                { q: "2. Egalik qo'shimchalari qaysi so'z turkumiga xos?", a: ["Fe'l", "Ot", "Sifat", "Ravish"], c: 1 },
+                { q: "3. O'zbek tili qaysi tillar oilasiga kiradi?", a: ["Hind-yevropa", "Turkiy tillar", "Sami-homi", "Ural"], c: 1 },
+                { q: "4. Quyidagi so'zlardan qaysi biri fe'l turkumiga kiradi?", a: ["Chiroyli", "Yugurdi", "Kitob", "Tez"], c: 1 },
+                { q: "5. 'O'tkan kunlar' romanining muallifi kim?", a: ["G'afur G'ulom", "Abdulla Qodiriy", "Cho'lpon", "Oybek"], c: 1 },
+                { q: "6. Qaysi gapda imlo xatosi bor?", a: ["Men keldim.", "Hamma bu yerda.", "Ertaga uchrashamiz.", "Bugun judayam isid."], c: 3 },
+                { q: "7. Sifat darajalari nechta?", a: ["2 ta", "3 ta", "4 ta", "5 ta"], c: 1 },
+                { q: "8. 'Alpomish' qanday asar turi hisoblanadi?", a: ["Doston", "Ertak", "Hikoya", "Roman"], c: 0 },
+                { q: "9. Gapda egalik va kelishik qo'shimchalari qanday vazifani bajaradi?", a: ["So'z yasaydi", "So'z shaklini o'zgartiradi", "Yangi ma'no beradi", "Hech qanday"], c: 1 },
+                { q: "10. 'Shirin' so'zining antonimi qaysi?", a: ["Achchiq", "Mazzali", "Totli", "Suyuq"], c: 0 }
+            ]
+        };
+
+        let timerInterval;
+        let timeLeft = 0;
+        let selectedAnswers = {};
+        let currentExamId = '';
+        let activeQuestions = [];
+
         document.addEventListener('DOMContentLoaded', function() {
+            // Sahifa yuklanganda eski natijalar tekshirilib, tugmalar matni yangilanadi
+            updateButtonLabels();
+            
             const btn = document.getElementById('hamburgerBtn');
             const sidebar = document.getElementById('sidebar');
             const overlay = document.getElementById('sidebarOverlay');
-
-            function toggleSidebar() {
-                sidebar.classList.toggle('-translate-x-full');
-                overlay.classList.toggle('hidden');
+            if(btn && sidebar && overlay) {
+                btn.addEventListener('click', () => { sidebar.classList.toggle('-translate-x-full'); overlay.classList.toggle('hidden'); });
+                overlay.addEventListener('click', () => { sidebar.classList.toggle('-translate-x-full'); overlay.classList.toggle('hidden'); });
             }
-
-            btn.addEventListener('click', toggleSidebar);
-            overlay.addEventListener('click', toggleSidebar);
         });
+
+        // Tugmalardagi "Boshlash" yoki "Qayta topshirish" yozuvlarini yangilovchi funksiya
+        function updateButtonLabels() {
+            if(localStorage.getItem('matematika')) {
+                const btnMat = document.getElementById('btn_start_matematika');
+                if(btnMat) btnMat.textContent = "Qayta topshirish";
+            }
+            if(localStorage.getItem('onatili')) {
+                const btnOna = document.getElementById('btn_start_onatili');
+                if(btnOna) btnOna.textContent = "Qayta topshirish";
+            }
+        }
+
+        // Imtihonni boshlash
+        function startExam(id, title, minutes) {
+            currentExamId = id;
+            activeQuestions = examsDatabase[id]; // Tanlangan fanning 10 ta o'ziga xos testi yuklanadi
+
+            document.getElementById('mainContent').classList.add('hidden');
+            document.getElementById('resultSection').classList.add('hidden');
+            document.getElementById('examSection').classList.remove('hidden');
+
+            document.getElementById('examTitleDisplay').textContent = title;
+            timeLeft = minutes * 60;
+            selectedAnswers = {};
+
+            const container = document.getElementById('questionsContainer');
+            container.innerHTML = "";
+            
+            activeQuestions.forEach((item, qIndex) => {
+                let optionsHTML = "";
+                item.a.forEach((ans, aIndex) => {
+                    optionsHTML += `
+                        <label class="flex items-center gap-3 p-3 bg-slate-50 border border-slate-200 rounded-xl cursor-pointer hover:bg-blue-50/50 transition-all">
+                            <input type="radio" name="question_${qIndex}" value="${aIndex}" onclick="selectAnswer(${qIndex}, ${aIndex})" class="w-4 h-4 text-blue-600 focus:ring-blue-500">
+                            <span class="text-sm font-medium text-slate-700">${ans}</span>
+                        </label>
+                    `;
+                });
+
+                container.innerHTML += `
+                    <div class="bg-white p-5 rounded-xl border border-slate-100 shadow-sm">
+                        <p class="font-bold text-slate-800 text-base mb-3">${item.q}</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">${optionsHTML}</div>
+                    </div>
+                `;
+            });
+
+            clearInterval(timerInterval);
+            updateTimerDisplay();
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                updateTimerDisplay();
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    finishExam();
+                }
+            }, 1000);
+        }
+
+        function selectAnswer(qIndex, aIndex) {
+            selectedAnswers[qIndex] = aIndex;
+        }
+
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            document.getElementById('timerDisplay').textContent = 
+                `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+        }
+
+        // Imtihonni tugatish va xotiraga yozish
+        function finishExam() {
+            clearInterval(timerInterval);
+            
+            let correctCount = 0;
+            activeQuestions.forEach((item, index) => {
+                if (selectedAnswers[index] !== undefined && parseInt(selectedAnswers[index]) === item.c) {
+                    correctCount++;
+                }
+            });
+
+            const percent = Math.round((correctCount / activeQuestions.length) * 100);
+
+            // Natijalarni brauzer xotirasiga o'rnatish
+            const examResultData = {
+                title: document.getElementById('examTitleDisplay').textContent,
+                total: activeQuestions.length,
+                correct: correctCount,
+                percent: percent
+            };
+            localStorage.setItem(currentExamId, JSON.stringify(examResultData));
+
+            // Tugma yozuvlarini real vaqtda o'zgartirish
+            updateButtonLabels();
+
+            // Natija ekranini ko'rsatish
+            showResultView(examResultData.title, examResultData.total, examResultData.correct, examResultData.percent);
+        }
+
+        function showResultView(title, total, correct, percent) {
+            document.getElementById('examSection').classList.add('hidden');
+            document.getElementById('mainContent').classList.add('hidden');
+            document.getElementById('resultSection').classList.remove('hidden');
+
+            document.getElementById('resultExamName').textContent = title;
+            document.getElementById('resTotal').textContent = `${total} ta`;
+            document.getElementById('resCorrect').textContent = `${correct} ta`;
+            document.getElementById('resPercent').textContent = `${percent}%`;
+        }
+
+        function backToList() {
+            document.getElementById('resultSection').classList.add('hidden');
+            document.getElementById('mainContent').classList.remove('hidden');
+        }
+
+        // Saqlangan natijani ochib berish
+        function showResultsMock(id) {
+            const savedData = localStorage.getItem(id);
+            if (savedData) {
+                const data = JSON.parse(savedData);
+                showResultView(data.title, data.total, data.correct, data.percent);
+            } else {
+                alert("Siz hali bu imtihonni topshirmadingiz. Natijani ko'rish uchun avval 'Boshlash' tugmasini bosing.");
+            }
+        }
     </script>
 </body>
 </html>

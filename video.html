@@ -7,9 +7,10 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght=400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        .dark-mode-active body { background-color: #0f172a !important; color: #f1f5f9 !important; }
         body { font-family: 'Inter', sans-serif; }
         .video-gradient-blue { background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); }
         .video-gradient-purple { background: linear-gradient(135deg, #9333ea 0%, #7e22ce 100%); }
@@ -78,14 +79,13 @@
         </nav>
 
         <div class="p-4 border-t border-gray-100">
-                <a href="bildirishnoma.html"
-                    class="flex items-center justify-between p-3 text-slate-600 hover:bg-slate-50 rounded-xl cursor-pointer transition-all">
-                    <div class="flex items-center gap-2 font-medium">
-                        <i class="fas fa-bell text-slate-400"></i> Bildirishnomalar
-                    </div>
-                    <span class="bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">3</span>
-                </a>
-            </div>
+            <a href="bildirishnoma.html" class="flex items-center justify-between p-3 text-slate-600 hover:bg-slate-50 rounded-xl cursor-pointer transition-all">
+                <div class="flex items-center gap-2 font-medium">
+                    <i class="fas fa-bell text-slate-400"></i> Bildirishnomalar
+                </div>
+                <span class="bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">3</span>
+            </a>
+        </div>
     </aside>
 
     <main class="flex-1 p-4 lg:p-8 overflow-x-hidden">
@@ -97,16 +97,16 @@
                     <p class="text-slate-500 mt-1">Barcha fanlar va mavzular bo'yicha video darslar to'plami</p>
                 </div>
                 <div class="relative">
-                    <input type="text" placeholder="Darslarni qidirish..." class="w-full sm:w-64 pl-10 pr-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:border-blue-500 text-sm transition-all bg-white">
+                    <input type="text" id="searchInput" placeholder="Darslarni qidirish..." class="w-full sm:w-64 pl-10 pr-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:border-blue-500 text-sm transition-all bg-white">
                     <i class="fas fa-search absolute left-3.5 top-3 text-slate-400 text-xs"></i>
                 </div>
             </header>
 
-            <div class="flex gap-2 overflow-x-auto pb-3 mb-6 no-scrollbar">
-                <button class="bg-blue-600 text-white text-sm font-semibold px-4 py-2 rounded-xl whitespace-nowrap shadow-sm">Barcha darslar</button>
-                <button class="bg-white text-slate-600 hover:bg-slate-100 text-sm font-medium px-4 py-2 rounded-xl border border-slate-200/60 whitespace-nowrap transition-all">Matematika</button>
-                <button class="bg-white text-slate-600 hover:bg-slate-100 text-sm font-medium px-4 py-2 rounded-xl border border-slate-200/60 whitespace-nowrap transition-all">Ona tili</button>
-                <button class="bg-white text-slate-600 hover:bg-slate-100 text-sm font-medium px-4 py-2 rounded-xl border border-slate-200/60 whitespace-nowrap transition-all">Ingliz tili</button>
+            <div class="flex gap-2 overflow-x-auto pb-3 mb-6 no-scrollbar" id="filterContainer">
+                <button data-filter="all" class="filter-btn bg-blue-600 text-white text-sm font-semibold px-4 py-2 rounded-xl whitespace-nowrap shadow-sm">Barcha darslar</button>
+                <button data-filter="matematika" class="filter-btn bg-white text-slate-600 hover:bg-slate-100 text-sm font-medium px-4 py-2 rounded-xl border border-slate-200/60 whitespace-nowrap transition-all">Matematika</button>
+                <button data-filter="onatili" class="filter-btn bg-white text-slate-600 hover:bg-slate-100 text-sm font-medium px-4 py-2 rounded-xl border border-slate-200/60 whitespace-nowrap transition-all">Ona tili</button>
+                <button data-filter="ingliztili" class="filter-btn bg-white text-slate-600 hover:bg-slate-100 text-sm font-medium px-4 py-2 rounded-xl border border-slate-200/60 whitespace-nowrap transition-all">Ingliz tili</button>
             </div>
 
             <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-4 lg:p-6">
@@ -115,18 +115,18 @@
                     <h3 class="font-bold text-slate-800 text-base">Mavjud darslar</h3>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6" id="videoGrid">
                     
-                    <div class="border border-slate-100 rounded-2xl overflow-hidden group cursor-pointer hover:shadow-md transition duration-300 bg-white">
+                    <div id="video-onatili-1" onclick="watchVideo('video-onatili-1', 'https://www.youtube.com/watch?v=kY67Z3vB_zM')" class="video-item border border-slate-100 rounded-2xl overflow-hidden group cursor-pointer hover:shadow-md transition duration-300 bg-white" data-subject="onatili">
                         <div class="h-48 video-gradient-blue flex items-center justify-center relative">
                             <div class="bg-white/90 p-3.5 rounded-full text-blue-600 shadow-xl group-hover:scale-110 transition duration-300">
                                 <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 20 20"><path d="M4.5 2.691l12.5 7.309-12.5 7.309V2.691z"/></svg>
                             </div>
-                            <span class="absolute top-4 right-4 bg-emerald-500 text-white text-[10px] px-2 py-0.5 rounded font-bold uppercase tracking-wide shadow-sm">Ko'rilgan</span>
+                            <span class="status-badge absolute top-4 right-4 hidden bg-emerald-500 text-white text-[10px] px-2 py-0.5 rounded font-bold uppercase tracking-wide shadow-sm">Ko'rilgan</span>
                         </div>
                         <div class="p-4 lg:p-5">
                             <span class="text-xs text-blue-600 font-bold uppercase tracking-wider">Ona tili</span>
-                            <h4 class="font-bold text-slate-800 text-base lg:text-lg mt-1 group-hover:text-blue-600 transition">Grammatika asoslari</h4>
+                            <h4 class="video-title font-bold text-slate-800 text-base lg:text-lg mt-1 group-hover:text-blue-600 transition">Grammatika asoslari</h4>
                             <div class="flex items-center gap-1.5 text-slate-400 mt-3">
                                 <i class="far fa-clock text-xs"></i>
                                 <span class="text-xs font-medium">15:30 daqiqa</span>
@@ -134,16 +134,16 @@
                         </div>
                     </div>
 
-                    <div class="border border-slate-100 rounded-2xl overflow-hidden group cursor-pointer hover:shadow-md transition duration-300 bg-white">
+                    <div id="video-matematika-1" onclick="watchVideo('video-matematika-1', 'https://www.youtube.com/watch?v=84w4LreXqZ4')" class="video-item border border-slate-100 rounded-2xl overflow-hidden group cursor-pointer hover:shadow-md transition duration-300 bg-white" data-subject="matematika">
                         <div class="h-48 video-gradient-purple flex items-center justify-center relative">
                             <div class="bg-white/90 p-3.5 rounded-full text-purple-600 shadow-xl group-hover:scale-110 transition duration-300">
                                 <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 20 20"><path d="M4.5 2.691l12.5 7.309-12.5 7.309V2.691z"/></svg>
                             </div>
-                            <span class="absolute top-4 right-4 bg-emerald-500 text-white text-[10px] px-2 py-0.5 rounded font-bold uppercase tracking-wide shadow-sm">Ko'rilgan</span>
+                            <span class="status-badge absolute top-4 right-4 hidden bg-emerald-500 text-white text-[10px] px-2 py-0.5 rounded font-bold uppercase tracking-wide shadow-sm">Ko'rilgan</span>
                         </div>
                         <div class="p-4 lg:p-5">
                             <span class="text-xs text-purple-600 font-bold uppercase tracking-wider">Matematika</span>
-                            <h4 class="font-bold text-slate-800 text-base lg:text-lg mt-1 group-hover:text-purple-600 transition">Algebra tenglamalar</h4>
+                            <h4 class="video-title font-bold text-slate-800 text-base lg:text-lg mt-1 group-hover:text-purple-600 transition">Algebra tenglamalar</h4>
                             <div class="flex items-center gap-1.5 text-slate-400 mt-3">
                                 <i class="far fa-clock text-xs"></i>
                                 <span class="text-xs font-medium">22:15 daqiqa</span>
@@ -151,15 +151,16 @@
                         </div>
                     </div>
 
-                    <div class="border border-slate-100 rounded-2xl overflow-hidden group cursor-pointer hover:shadow-md transition duration-300 bg-white">
+                    <div id="video-ingliztili-1" onclick="watchVideo('video-ingliztili-1', 'https://www.youtube.com/watch?v=7uVun7_pZ6Y')" class="video-item border border-slate-100 rounded-2xl overflow-hidden group cursor-pointer hover:shadow-md transition duration-300 bg-white" data-subject="ingliztili">
                         <div class="h-48 video-gradient-green flex items-center justify-center relative">
                             <div class="bg-white/90 p-3.5 rounded-full text-emerald-600 shadow-xl group-hover:scale-110 transition duration-300">
                                 <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 20 20"><path d="M4.5 2.691l12.5 7.309-12.5 7.309V2.691z"/></svg>
                             </div>
+                            <span class="status-badge absolute top-4 right-4 hidden bg-emerald-500 text-white text-[10px] px-2 py-0.5 rounded font-bold uppercase tracking-wide shadow-sm">Ko'rilgan</span>
                         </div>
                         <div class="p-4 lg:p-5">
                             <span class="text-xs text-emerald-600 font-bold uppercase tracking-wider">Ingliz tili</span>
-                            <h4 class="font-bold text-slate-800 text-base lg:text-lg mt-1 group-hover:text-emerald-600 transition">Present Simple tenses</h4>
+                            <h4 class="video-title font-bold text-slate-800 text-base lg:text-lg mt-1 group-hover:text-emerald-600 transition">Present Simple tenses</h4>
                             <div class="flex items-center gap-1.5 text-slate-400 mt-3">
                                 <i class="far fa-clock text-xs"></i>
                                 <span class="text-xs font-medium">18:45 daqiqa</span>
@@ -167,15 +168,16 @@
                         </div>
                     </div>
 
-                    <div class="border border-slate-100 rounded-2xl overflow-hidden group cursor-pointer hover:shadow-md transition duration-300 bg-white">
+                    <div id="video-matematika-2" onclick="watchVideo('video-matematika-2', 'https://www.youtube.com/watch?v=pAnVw0yvG2k')" class="video-item border border-slate-100 rounded-2xl overflow-hidden group cursor-pointer hover:shadow-md transition duration-300 bg-white" data-subject="matematika">
                         <div class="h-48 video-gradient-orange flex items-center justify-center relative">
                             <div class="bg-white/90 p-3.5 rounded-full text-orange-600 shadow-xl group-hover:scale-110 transition duration-300">
                                 <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 20 20"><path d="M4.5 2.691l12.5 7.309-12.5 7.309V2.691z"/></svg>
                             </div>
+                            <span class="status-badge absolute top-4 right-4 hidden bg-emerald-500 text-white text-[10px] px-2 py-0.5 rounded font-bold uppercase tracking-wide shadow-sm">Ko'rilgan</span>
                         </div>
                         <div class="p-4 lg:p-5">
                             <span class="text-xs text-orange-600 font-bold uppercase tracking-wider">Matematika</span>
-                            <h4 class="font-bold text-slate-800 text-base lg:text-lg mt-1 group-hover:text-orange-600 transition">Geometriya masalalari</h4>
+                            <h4 class="video-title font-bold text-slate-800 text-base lg:text-lg mt-1 group-hover:text-orange-600 transition">Geometriya masalalari</h4>
                             <div class="flex items-center gap-1.5 text-slate-400 mt-3">
                                 <i class="far fa-clock text-xs"></i>
                                 <span class="text-xs font-medium">25:00 daqiqa</span>
@@ -190,6 +192,10 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Avval ko'rilgan videolarni xotiradan yuklash
+            loadWatchedVideos();
+
+            // Sidebar menyu
             const btn = document.getElementById('hamburgerBtn');
             const sidebar = document.getElementById('sidebar');
             const overlay = document.getElementById('sidebarOverlay');
@@ -199,9 +205,83 @@
                 overlay.classList.toggle('hidden');
             }
 
-            btn.addEventListener('click', toggleSidebar);
-            overlay.addEventListener('click', toggleSidebar);
+            if(btn) btn.addEventListener('click', toggleSidebar);
+            if(overlay) overlay.addEventListener('click', toggleSidebar);
+
+            // Filtr tizimi
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const videoItems = document.querySelectorAll('.video-item');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    filterButtons.forEach(b => {
+                        b.classList.remove('bg-blue-600', 'text-white', 'shadow-sm', 'font-semibold');
+                        b.classList.add('bg-white', 'text-slate-600', 'font-medium');
+                    });
+                    this.classList.remove('bg-white', 'text-slate-600', 'font-medium');
+                    this.classList.add('bg-blue-600', 'text-white', 'shadow-sm', 'font-semibold');
+
+                    const criteria = this.getAttribute('data-filter');
+                    videoItems.forEach(item => {
+                        if (criteria === 'all' || item.getAttribute('data-subject') === criteria) {
+                            item.style.setProperty('display', 'block', 'important');
+                        } else {
+                            item.style.setProperty('display', 'none', 'important');
+                        }
+                    });
+                });
+            });
+
+            // Qidiruv tizimi
+            const searchInput = document.getElementById('searchInput');
+            searchInput.addEventListener('input', function() {
+                const text = this.value.toLowerCase();
+                videoItems.forEach(item => {
+                    const title = item.querySelector('.video-title').textContent.toLowerCase();
+                    if(title.includes(text)) {
+                        item.style.setProperty('display', 'block', 'important');
+                    } else {
+                        item.style.setProperty('display', 'none', 'important');
+                    }
+                });
+            });
         });
+
+        // Videoni ko'rish va statusni xotiraga yozish funksiyasi
+        function watchVideo(videoId, videoUrl) {
+            // 1. LocalStorage xotirasiga saqlash
+            localStorage.setItem(videoId, 'watched');
+            
+            // 2. Sahifaning o'zida "Ko'rilgan" nishonini chiqarish
+            const videoElement = document.getElementById(videoId);
+            if (videoElement) {
+                const badge = videoElement.querySelector('.status-badge');
+                if (badge) badge.classList.remove('hidden');
+            }
+
+            // 3. Haqiqiy video havolasini (YouTube silka) yangi oynada ochish
+            window.open(videoUrl, '_blank');
+        }
+
+        // Sahifa yuklanganda xotiradan statuslarni tiklash
+        function loadWatchedVideos() {
+            const videoItems = document.querySelectorAll('.video-item');
+            videoItems.forEach(item => {
+                const id = item.getAttribute('id');
+                if (localStorage.getItem(id) === 'watched') {
+                    const badge = item.querySelector('.status-badge');
+                    if (badge) badge.classList.remove('hidden');
+                }
+            });
+        }
+
+        // Dark mode tekshiruvi
+        (function () {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark-mode-active');
+            }
+        })();
     </script>
 </body>
 </html>

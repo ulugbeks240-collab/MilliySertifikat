@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sertifikat - Kirish</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 flex items-center justify-center min-h-screen p-4">
+
+    <div class="bg-white p-8 rounded-2xl shadow-xl shadow-slate-200/80 border border-slate-100 max-w-md w-full">
+        <div class="flex flex-col items-center mb-8">
+            <div class="bg-blue-600 text-white p-3 rounded-2xl shadow-lg shadow-blue-200 mb-3">
+                <i class="fas fa-book-open text-2xl"></i>
+            </div>
+            <h2 class="text-2xl font-bold text-slate-900">Platformaga kirish</h2>
+            <p class="text-slate-400 text-sm mt-1">Davom etish uchun login va parolingizni kiriting</p>
+        </div>
+
+        <div id="errorMsg"
+            class="hidden bg-red-50 border border-red-200 text-red-600 text-sm p-3 rounded-xl mb-4 flex items-center gap-2">
+            <i class="fas fa-exclamation-circle"></i>
+            <span id="errorText"></span>
+        </div>
+
+        <form id="loginForm" class="space-y-4">
+            <div>
+                <label class="block text-sm font-semibold text-slate-700 mb-1">Login</label>
+                <div class="relative">
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-400">
+                        <i class="fas fa-at"></i>
+                    </span>
+                    <input type="text" id="loginInput" required placeholder="Loginingizni yozing"
+                        class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-blue-500 text-sm bg-slate-50/50">
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-sm font-semibold text-slate-700 mb-1">Parol</label>
+                <div class="relative">
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-400">
+                        <i class="fas fa-lock"></i>
+                    </span>
+                    <input type="password" id="passwordInput" required placeholder="••••••••"
+                        class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-blue-500 text-sm bg-slate-50/50">
+                </div>
+            </div>
+
+            <button type="submit"
+                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm py-3 rounded-xl shadow-md shadow-blue-100 active:scale-[0.98] mt-2">
+                Tizimga kirish
+            </button>
+        </form>
+
+        <div class="mt-6 text-center text-sm text-slate-500 border-t border-slate-100 pt-4 flex flex-col gap-2">
+            <div>
+                A'zo emassizmi? <a href="register.html"
+                    class="text-blue-600 hover:underline font-semibold ml-1">Ro'yxatdan o'tish</a>
+            </div>
+            <div class="mt-2 text-xs">
+                Sayt boshqaruvchisimisiz? <a href="admin.html" class="text-red-600 hover:underline font-medium ml-1"><i
+                        class="fas fa-user-shield"></i> Admin Panel</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const inputUsername = document.getElementById('loginInput').value.trim().toLowerCase();
+            const inputPassword = document.getElementById('passwordInput').value.trim();
+            const errorMsg = document.getElementById('errorMsg');
+            const errorText = document.getElementById('errorText');
+
+            // 1. ADMIN KIRISH TEKSHIRUVI
+            if (inputUsername === "admin23" && inputPassword === "admin23") {
+                window.location.href = 'admin.html';
+                return;
+            }
+
+            // 2. FOYDALANUVCHILAR RO'YXATINI OLISH
+            let usersList = JSON.parse(localStorage.getItem('usersList')) || [];
+
+            // 3. RO'YXATDAN SHU FOYDALANUVCHINI QIDIRISH
+            const foundUser = usersList.find(user => user.username === inputUsername && user.password === inputPassword);
+
+            if (foundUser) {
+                // Tizimga muvaffaqiyatli kirdi: joriy foydalanuvchi ma'lumotlarini saqlaymiz
+                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('userName', foundUser.name);
+                localStorage.setItem('savedUsername', foundUser.username);
+                localStorage.setItem('savedPassword', foundUser.password);
+                localStorage.setItem('isPremium', foundUser.status); // Premium yoki Oddiy
+
+                errorMsg.classList.add('hidden');
+                window.location.href = 'sozlamlar.html'; // yoki sertifikat sahifasi
+            } else {
+                // Agar xato bo'lsa
+                errorText.innerText = "Login yoki parol noto'g'ri, yoki bunday foydalanuvchi mavjud emas!";
+                errorMsg.classList.remove('hidden');
+            }
+        });
+    </script>
+</body>
+
+</html>
