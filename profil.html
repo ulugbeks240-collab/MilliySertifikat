@@ -591,6 +591,12 @@
                 document.documentElement.classList.add('dark-mode-active');
             }
         })();
+        function logoutUser() {
+    // Xotiradan kirganlik haqidagi ma'lumotni o'chiramiz
+    localStorage.removeItem('isLoggedIn');
+    // Login sahifasiga qaytaramiz
+    window.location.href = 'login.html';
+}
     </script>
 </body>
 </html>

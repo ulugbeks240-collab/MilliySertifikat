@@ -322,6 +322,15 @@
                 alert("Siz hali bu imtihonni topshirmadingiz. Natijani ko'rish uchun avval 'Boshlash' tugmasini bosing.");
             }
         }
+        document.addEventListener('DOMContentLoaded', function() {
+    // Foydalanuvchi tizimga kirganmi yoki yo'qmi tekshiramiz
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+
+    if (isLoggedIn !== 'true') {
+        // Agar kirmagan bo'lsa, uni to'g'ridan-to'g'ri login sahifasiga otib yuboramiz
+        window.location.href = 'login.html'; 
+    }
+});
     </script>
 </body>
 </html>
